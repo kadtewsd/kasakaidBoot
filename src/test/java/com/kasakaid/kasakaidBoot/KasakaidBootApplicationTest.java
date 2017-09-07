@@ -1,7 +1,7 @@
 package com.kasakaid.kasakaidBoot;
 
 import com.kasakaid.kasakaidBoot.domain.TestTable;
-import com.kasakaid.kasakaidBoot.service.TestService;
+import com.kasakaid.kasakaidBoot.service.NamedEntityService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,18 @@ public class KasakaidBootApplicationTest {
     private Configuration config;
 
     @Autowired
-    private TestService service;
+    private NamedEntityService service;
     @Test
     public void test1() {
         List<TestTable> test = service.findAll();
         assertThat(test.size(), is(greaterThan(0)));
-        assertThat(test.size(), is(equalTo(2)));
+        assertThat(test.size(), is(equalTo(6)));
+    }
 
-
+    @Test
+    public void test2() {
+        List<TestTable> test = service.findOne(1);
+        assertThat(test.size(), is(equalTo(1)));
     }
 
 }
