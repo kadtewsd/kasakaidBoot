@@ -32,6 +32,8 @@ public class KasakaidBootApplicationTest {
     private NamedEntityService service;
     @Test
     public void test1() {
+/*        SELECT testtable0_.userId From TestTable testtable0_
+        left outer join TestChildTable children1_ on testtable0_.userId=children1_.userId; */
         List<TestTable> test = service.findAll();
         assertThat(test.size(), is(greaterThan(0)));
         assertThat(test.size(), is(equalTo(6)));
