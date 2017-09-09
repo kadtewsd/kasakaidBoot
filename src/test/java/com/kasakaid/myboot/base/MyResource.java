@@ -1,6 +1,5 @@
 package com.kasakaid.myboot.base;
 
-import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -8,21 +7,18 @@ import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.rules.ExternalResource;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.sql.SQLException;
 
 @Component
-public class DBUnit extends ExternalResource {
+public class MyResource extends ExternalResource {
 
     /** ApplicationContext */
     @Autowired
