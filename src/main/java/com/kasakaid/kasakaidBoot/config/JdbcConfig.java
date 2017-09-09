@@ -23,7 +23,7 @@ public class JdbcConfig {
 
         ResourceDatabasePopulator generalPopulator = new ResourceDatabasePopulator(
                 new ClassPathResource("schema.sql"),
-                new ClassPathResource("data.sql"));
+                new ClassPathResource("db/migration/data.sql"));
 
         initializer.setDatabasePopulator(new CompositeDatabasePopulator(functionPopulator, generalPopulator));
 

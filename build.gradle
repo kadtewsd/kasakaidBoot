@@ -70,6 +70,10 @@ dependencies {
     compile group: 'ch.qos.logback', name : 'logback-core', version: '1.2.3'
     // https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2
     //compile group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2', version: '1.16', ext: 'pom'
+    compile('org.flywaydb:flyway-core')
+    compile('org.springframework.boot:spring-boot-starter')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.dbunit:dbunit:2.5.1')
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.security:spring-security-test")
     testCompile('com.h2database:h2')
