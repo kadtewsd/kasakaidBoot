@@ -4,9 +4,10 @@ import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
 import com.kasakaid.myboot.base.MyResource;
+import com.kasakaid.myboot.config.TestConfig;
 import com.kasakaid.myboot.verify.ISimpleBean;
 import com.kasakaid.myboot.verify.SimpleBean;
-import com.kasakaid.myboot.config.TestConfig;
+import lombok.SneakyThrows;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -54,18 +55,24 @@ public class MusicFestivalServiceTest {
     @Autowired
     private MusicFestivalService service;
     @Test
-    public void test1() {
+    public void test1() throws Exception {
+        this.myResource.insertData("music_festival");
         List<MusicFestival> test = service.findAll();
         assertThat(test.size(), is(greaterThan(0)));
-        assertThat(test.size(), is(equalTo(6)));
+        assertThat(test.size(), is(equalTo(1 )));
+        assertThat(test.get(0).getArtists(), notNullValue());
+        assertThat(test.get(0).getArtists().size(), is(equalTo(9 )));
     }
 
     @Test
+    @SneakyThrows
     public void test2() {
-        Class cl = net.sf.log4jdbc.sql.jdbcapi.DriverSpy.class;
+        this.myResource.insertData("music_festival");
         List<MusicFestival> test = service.findOne(1L);
         assertThat(test, notNullValue());
-        //assertThat(test.size(), is(equalTo(1)));
+        assertThat(test.size(), is(equalTo(1)));
+        assertThat(test.get(0).getArtists(), notNullValue());
+        assertThat(test.get(0).getArtists().size(), is(equalTo(9 )));
     }
 
 }

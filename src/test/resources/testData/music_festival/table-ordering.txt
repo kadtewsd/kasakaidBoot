@@ -1,2 +1,2 @@
-music_festival
 artist
+music_festival

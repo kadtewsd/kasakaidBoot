@@ -1,5 +1,6 @@
 package com.kasakaid.myboot.base;
 
+import org.apache.commons.logging.impl.SLF4JLog;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -7,6 +8,8 @@ import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.rules.ExternalResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -20,6 +23,7 @@ import java.sql.SQLException;
 @Component
 public class MyResource extends ExternalResource {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     /** ApplicationContext */
     @Autowired
     protected ApplicationContext context;
@@ -31,6 +35,14 @@ public class MyResource extends ExternalResource {
     /** CSVデータ格納ディレクトリ */
     private static final String CSV_DIRECTORY = "src/test/resources/testData/";
 
+    @Override
+    public void before() {
+        logger.info(this.getClass().getName() + "before start.");
+    }
+    @Override
+    public void after() {
+        logger.info(this.getClass().getName() + "after start");
+    }
     /**
      * テストデータ投入メソッド
      *
