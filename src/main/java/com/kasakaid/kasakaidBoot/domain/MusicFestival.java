@@ -37,7 +37,8 @@ public class MusicFestival {
     // ElementCollection ありの状態で Collection テーブルを指定すると、
     // Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [artists_festival_id] in table [artist]
 //    @CollectionTable( name="artist", joinColumns=@JoinColumn(name="festivalId"))
-//    @JoinTable(name = "artist", inverseJoinColumns = @JoinColumn(name = "id"))
+//    @JoinTable(name = "artist", joinColumns = @JoinColumn(name = "festivalId"), inverseJoinColumns = @JoinColumn(name = "id"))
+//    @CollectionTable(name = "artist", joinColumns = @JoinColumn(name = "festival_id", referencedColumnName = "id"))
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
     private List<Artist> artists;
 }

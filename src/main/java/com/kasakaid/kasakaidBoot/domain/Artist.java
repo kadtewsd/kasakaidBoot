@@ -20,11 +20,11 @@ public class Artist implements Serializable {
     @Setter
     @Id
     private long artistId;
-    @Id
     //@Column(name = "festival_id")
     // ManyToOne で 結合するカラム名は、論理名 (プロパティ名) が採用されるので、@Column で指定しないと
     // Caused by: org.hibernate.DuplicateMappingException: Table [artist] contains physical column name [festival_id] referred to by multiple physical column names: [festival_id], [festivalId]
-    // ただし、この方式だと、JoinColumn で referenceColumn を書かなくて良い。
+    // ただし、この方式だと、親テーブルのプロパティに書く必要がある @JoinColumn で referenceColumn を書かなくて良い。
+    @Id
     @Getter
     @Setter
     private long festivalId;
