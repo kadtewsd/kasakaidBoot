@@ -49,6 +49,7 @@ public class MusicFestivalServiceTest {
     // TestConfig の ComponentScan が効いている気配がない。
     // 下記のページでインターフェースでやると良いとあるが、インターフェースを使ってやってもだめ。
     //https://stackoverflow.com/questions/3413639/how-to-get-spring-to-autowire-integration-test-class-using-multiple-contexts
+    @Autowired
     private ISimpleBean simpleBean;
     @Autowired
     private MusicFestivalService service;
