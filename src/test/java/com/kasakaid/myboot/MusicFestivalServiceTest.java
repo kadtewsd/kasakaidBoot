@@ -13,6 +13,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,18 +30,19 @@ import static org.hamcrest.Matchers.*;
 //@ContextConfiguration(classes ={KasakaidBootApplication.class, TestConfig.class})
 //MusicFestivalService が NoSuchDefenitionerror
 //@ContextConfiguration(classes ={TestConfig.class}, loader = AnnotationConfigContextLoader.class)
-@ContextConfiguration(classes ={KasakaidBootApplication.class})
+//@ContextConfiguration(classes ={KasakaidBootApplication.class})
 //@SqlGroup({
 //        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql"),
 //        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:data.sql")
 //})
+@SpringBootTest(classes = KasakaidBootApplication.class)
 public class MusicFestivalServiceTest {
 
     @Before
     public void setup() {
         ApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
         myResource = context.getBean(MyResource.class);
-        simpleBean = context.getBean(SimpleBean.class);
+        simpleBean = context.getBean(ISimpleBean.class);
     }
 
     @Rule
@@ -50,7 +53,7 @@ public class MusicFestivalServiceTest {
     // TestConfig の ComponentScan が効いている気配がない。
     // 下記のページでインターフェースでやると良いとあるが、インターフェースを使ってやってもだめ。
     //https://stackoverflow.com/questions/3413639/how-to-get-spring-to-autowire-integration-test-class-using-multiple-contexts
-    //@Autowired
+//    @Autowired
     private ISimpleBean simpleBean;
     @Autowired
     private MusicFestivalService service;
@@ -73,6 +76,12 @@ public class MusicFestivalServiceTest {
         assertThat(test.size(), is(equalTo(1)));
         assertThat(test.get(0).getArtists(), notNullValue());
         assertThat(test.get(0).getArtists().size(), is(equalTo(9 )));
+    }
+
+    @Test
+    public void テストクラスのBean化() {
+        assertThat(simpleBean, notNullValue());
+        assertThat(simpleBean.me(), is(SimpleBean.class.getName()));
     }
 
 }

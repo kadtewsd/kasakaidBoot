@@ -4,6 +4,7 @@ import com.kasakaid.myboot.base.MyResource;
 import com.kasakaid.myboot.verify.ISimpleBean;
 import com.kasakaid.myboot.verify.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +12,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
-@Configuration
+//@Configuration
+@TestConfiguration
 @ComponentScan(basePackages = {"com.kasakaid.myboot"})
 public class TestConfig {
 
     @Autowired
     Environment environment;
+
     @Bean
     public ISimpleBean simpleBean() {
         SimpleBean orderService = new SimpleBean();
@@ -43,8 +46,10 @@ public class TestConfig {
         dataSource.setPassword("");
         return new TransactionAwareDataSourceProxy(dataSource);
     }
+
     @Bean
     public MyResource myResource() {
         return new MyResource();
     }
 }
+

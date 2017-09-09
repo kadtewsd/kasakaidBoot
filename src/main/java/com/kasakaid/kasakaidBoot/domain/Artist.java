@@ -51,6 +51,6 @@ public class Artist implements Serializable {
     //at sun.reflect.generics.repository.MethodRepository.getReturnType(MethodRepository.java:68)
     //at java.lang.reflect.Method.getGenericReturnType(Method.java:255)
     @ManyToOne
-    @JoinColumn(name = "festivalId", updatable = false, insertable = false, referencedColumnName = "id")
+    @JoinColumn(name = "festivalId", referencedColumnName = "id")
     private MusicFestival musicFestival;
 }
