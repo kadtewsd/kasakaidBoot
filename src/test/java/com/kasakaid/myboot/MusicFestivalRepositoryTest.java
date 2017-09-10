@@ -38,7 +38,7 @@ public class MusicFestivalRepositoryTest {
         festival.setArtists(new LinkedList() {
             {
                 add(new Artist(5L, 3, "Lisa", 5, new GregorianCalendar(
-                        2017, 8, 5, 14, 0, 0).getTime()
+                        2017, 8 - 1, 5, 14, 0, 0).getTime()
                         , festival
                 ));
             }

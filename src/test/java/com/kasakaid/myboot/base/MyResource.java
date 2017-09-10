@@ -1,6 +1,6 @@
 package com.kasakaid.myboot.base;
 
-import org.apache.commons.logging.impl.SLF4JLog;
+import lombok.extern.slf4j.Slf4j;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -8,22 +8,20 @@ import org.dbunit.dataset.csv.CsvDataSet;
 import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.rules.ExternalResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestComponent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.sql.SQLException;
 
-@Component
+@TestComponent
+@Slf4j
 public class MyResource extends ExternalResource {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
     /** ApplicationContext */
     @Autowired
     protected ApplicationContext context;
@@ -37,11 +35,11 @@ public class MyResource extends ExternalResource {
 
     @Override
     public void before() {
-        logger.info(this.getClass().getName() + "before start.");
+        log.info(this.getClass().getName() + "before start.");
     }
     @Override
     public void after() {
-        logger.info(this.getClass().getName() + "after start");
+        log.info(this.getClass().getName() + "after start");
     }
     /**
      * テストデータ投入メソッド
