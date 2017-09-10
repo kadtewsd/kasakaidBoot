@@ -1,5 +1,6 @@
 package com.kasakaid.kasakaidBoot.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Embeddable
 @Entity
+@AllArgsConstructor
 // このクラスは MusicFestival に参照されており、toString によって StackOverFlow になる。
 // @ToString(Exclude="musicFestival") を書くより getter, setter を各プロパティにかく。
 //@Data

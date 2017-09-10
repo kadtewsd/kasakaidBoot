@@ -1,5 +1,6 @@
 package com.kasakaid.kasakaidBoot.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
 @NamedEntityGraph(
         name = "music.festival",
         attributeNodes = @NamedAttributeNode(value = "artists")

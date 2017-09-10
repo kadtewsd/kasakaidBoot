@@ -16,5 +16,5 @@ public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Lo
 
     @EntityGraph(value = "music.festival" , type= EntityGraph.EntityGraphType.FETCH)
     @Query("select distinct x from MusicFestival x where id=?1")
-    List<MusicFestival> findById(Long id);
+    MusicFestival findById(Long id);
 }

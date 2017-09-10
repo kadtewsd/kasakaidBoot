@@ -71,11 +71,10 @@ public class MusicFestivalServiceTest {
     @SneakyThrows
     public void test2() {
         this.myResource.insertData("music_festival");
-        List<MusicFestival> test = service.findOne(1L);
+        MusicFestival test = service.findOne(1L);
         assertThat(test, notNullValue());
-        assertThat(test.size(), is(equalTo(1)));
-        assertThat(test.get(0).getArtists(), notNullValue());
-        assertThat(test.get(0).getArtists().size(), is(equalTo(9 )));
+        assertThat(test.getArtists(), notNullValue());
+        assertThat(test.getArtists().size(), is(equalTo(9 )));
     }
 
     @Test

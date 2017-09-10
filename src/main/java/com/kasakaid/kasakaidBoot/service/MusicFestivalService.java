@@ -16,7 +16,7 @@ public class MusicFestivalService {
         return musicFestivalRepository.findAll();
     }
 
-    public List<MusicFestival> findOne(Long id) {
+    public MusicFestival findOne(Long id) {
         return musicFestivalRepository.findById(id);
     }
 }
