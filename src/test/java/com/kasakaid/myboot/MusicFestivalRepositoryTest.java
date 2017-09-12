@@ -30,22 +30,22 @@ public class MusicFestivalRepositoryTest {
 
     @Before
     public void setUp() {
-        MusicFestival festival = new MusicFestival();
 
-        festival.setId(3L);
-        festival.setName("ROCK IN JAPAN Fes 2017");
-        festival.setEventDate(new GregorianCalendar(2017, 8, 5).getTime());
+        MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").eventDate(
+                new GregorianCalendar(2017, 8, 5).getTime()).build();
+
+        Artist artist = Artist.of().artistId(5L).name("Lisa").playOrder(5L).start(
+                new GregorianCalendar(2017, 8 - 1, 5, 14, 0, 0).getTime()).build();
         festival.setArtists(new LinkedList() {
             {
-                add(new Artist(5L, 3, "Lisa", 5, new GregorianCalendar(
-                        2017, 8 - 1, 5, 14, 0, 0).getTime()
-                        , festival
-                ));
+                add(artist);
+
             }
         });
         Mockito.when(musicFestivalRepository.findById(3L))
                 .thenReturn(festival);
     }
+
     @TestConfiguration
     static class MusicFestivalServiceImplTestContextConfiguration {
 
@@ -63,6 +63,5 @@ public class MusicFestivalRepositoryTest {
         Artist artist = musicFestival.getArtists().get(0);
         assertThat(artist.getName(), org.hamcrest.core.Is.is("Lisa"));
         assertThat(artist.getArtistId(), org.hamcrest.core.Is.is(5L));
-        assertThat(artist.getFestivalId(), org.hamcrest.core.Is.is(3L));
     }
 }

@@ -11,10 +11,10 @@ import java.util.List;
 @Repository
 public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Long> {
 
-    @Query("select distinct x from MusicFestival x left outer join fetch x.artists")
+    @Query("select distinct x from MusicFestival x left outer join fetch x.artists y")
     List<MusicFestival> findAll();
 
-    @EntityGraph(value = "music.festival" , type= EntityGraph.EntityGraphType.FETCH)
+    @EntityGraph(value = "music.festival" , type= EntityGraph.EntityGraphType.FETCH, attributePaths = {"artists"})
     @Query("select distinct x from MusicFestival x where id=?1")
     MusicFestival findById(Long id);
 }

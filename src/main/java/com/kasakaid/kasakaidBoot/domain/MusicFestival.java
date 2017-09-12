@@ -1,8 +1,6 @@
 package com.kasakaid.kasakaidBoot.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,30 +15,38 @@ import java.util.List;
  * There is no cascade option on an ElementCollection, the target objects are always persisted, merged, removed with their parent.
  * ElementCollection still can use a fetch type and defaults to LAZY the same as other collection mappings.
  */
-@Data
+//@Data
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
-@NamedEntityGraph(
-        name = "music.festival",
-        attributeNodes = @NamedAttributeNode(value = "artists")
-)
+//@NamedEntityGraph(
+//        name = "music.festival",
+//        attributeNodes = @NamedAttributeNode(value = "artists")
+//)
+@Builder(builderMethodName = "of")
 public class MusicFestival {
     @Id
+    @Getter
     private Long id;
+    @Getter
     private String name;
+    @Getter
     private String place;
+    @Getter
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
-//    @Embedded
+    @Embedded
     // element コレクションがないと artists は取ってこない。
-//    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER)
     // ElementCollection ありの状態で Collection テーブルを指定すると、
     // Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [artists_festival_id] in table [artist]
-//    @CollectionTable( name="artist", joinColumns=@JoinColumn(name="festivalId"))
+    @CollectionTable( name="artist", joinColumns=@JoinColumn(name="festivalId"))
 //    @JoinTable(name = "artist", joinColumns = @JoinColumn(name = "festivalId"), inverseJoinColumns = @JoinColumn(name = "id"))
+//    @JoinTable(name = "artist", inverseJoinColumns = @JoinColumn(name = "festivalId"))
 //    @CollectionTable(name = "artist", joinColumns = @JoinColumn(name = "festival_id", referencedColumnName = "id"))
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
+    @Getter
+    @Setter
     private List<Artist> artists;
 }
