@@ -10,15 +10,18 @@ public class MyNamingStrategy extends SpringPhysicalNamingStrategy {
 
     @Override
     public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
-        log.info(name.getCanonicalName());
-        return super.toPhysicalTableName(name, context);
+        log.info("table canonical : {} logical : {}", name.getCanonicalName(), name.getText());
+        Identifier result = super.toPhysicalTableName(name, context);
+        log.info("changed |||||| table canonical : {} logical : {}", result.getCanonicalName(), result.getText());
+        return result;
     }
 
     @Override
     public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment context) {
 //        log.info(identifier.getCanonicalName()); ヌルポになるのでこの戦略は使えない。
-        log.info(name.getCanonicalName());
-        log.info(name.getText());
-        return super.toPhysicalColumnName(name, context);
+        log.info("pre ### column canonical : {} logical : {}", name.getCanonicalName(), name.getText());
+        Identifier result = super.toPhysicalColumnName(name, context);
+        log.info("changed |||| column canonical : {} logical : {}", result.getCanonicalName(), result.getText());
+        return result;
     }
 }
