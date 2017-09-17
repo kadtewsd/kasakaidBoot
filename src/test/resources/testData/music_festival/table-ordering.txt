@@ -1,2 +1,3 @@
 artist
 music_festival
+festival_artist
