@@ -20,7 +20,13 @@ import java.util.List;
 @AllArgsConstructor
 @NamedEntityGraph(
         name = "music.festival",
-        attributeNodes = @NamedAttributeNode(value = "artists")
+        attributeNodes = @NamedAttributeNode(value = "artists", subgraph = "artist"),
+        subclassSubgraphs = {
+                @NamedSubgraph(name = "artist",
+                attributeNodes = {
+                        @NamedAttributeNode("name")
+                })
+        }
 )
 @Builder(builderMethodName = "of")
 public class MusicFestival {
@@ -44,5 +50,6 @@ public class MusicFestival {
     @OneToMany(mappedBy = "musicFestival")
     @Getter
     @Setter
+    @OrderBy("playOrder ASC")
     private List<FestivalArtist> artists;
 }
