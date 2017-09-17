@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Embeddable
 @Builder(builderMethodName = "of")
 @IdClass(FestivalArtistPrimaryKey.class)
 @NoArgsConstructor
@@ -34,7 +33,7 @@ public class FestivalArtist {
     })
     private MusicFestival musicFestival;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @Getter
     private Artist artist;
 }
