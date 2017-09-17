@@ -24,13 +24,13 @@ import java.util.List;
 )
 @Builder(builderMethodName = "of")
 public class MusicFestival {
+
     @Id
     @Getter
     private Long id;
 
     @Getter
     private String name;
-
     @Getter
     private String place;
 
@@ -41,8 +41,14 @@ public class MusicFestival {
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
+    @Embedded
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "festival_artist",
+            joinColumns = @JoinColumn(name = "festival_id")
+    )
     @Getter
     @Setter
     private List<FestivalArtist> artists;
+
 }

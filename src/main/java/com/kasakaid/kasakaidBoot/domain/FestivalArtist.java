@@ -1,40 +1,33 @@
 package com.kasakaid.kasakaidBoot.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Embeddable
 @Builder(builderMethodName = "of")
-@IdClass(FestivalArtistPrimaryKey.class)
 @NoArgsConstructor
 @AllArgsConstructor
-public class FestivalArtist {
+@Embeddable
+public class FestivalArtist implements Serializable {
 
-    @Id
-    @Getter
-    private long festivalId;
-    @Id
     @Getter
     private long artistId;
-
+    @Getter
+    @Column(name = "festival_id", insertable = false, updatable = false)
+    private long festivalId;
     @Getter
     private long playOrder;
+
     @Getter
     private Date start;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn( name = "festival_id"),
-    })
-    private MusicFestival musicFestival;
-
-    @OneToOne
+    @Embedded
+    @Transient // FestivalArtist は Entity ではないため、id がない。結合時には親テーブルに id が必要らしく、Artist との結合時に id がないと怒られる。
+    @Setter
     @Getter
+    @JoinColumn(name = "id", referencedColumnName = "artist_id")
     private Artist artist;
+
 }

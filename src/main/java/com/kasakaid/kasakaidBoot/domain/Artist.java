@@ -1,27 +1,20 @@
 package com.kasakaid.kasakaidBoot.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Embeddable
 @Builder(builderMethodName = "of")
 public class Artist implements Serializable {
 
-    @Id
     @Getter
+    @Setter
     private long id;
-
     @Getter
+    @Setter
     private String name;
-
-    @OneToOne(mappedBy = "artist")
-    @JoinColumn(name = "artist_id", referencedColumnName = "id")
-    private FestivalArtist festivalArtist;
 }

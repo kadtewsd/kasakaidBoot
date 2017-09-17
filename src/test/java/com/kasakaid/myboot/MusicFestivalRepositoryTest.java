@@ -38,7 +38,7 @@ public class MusicFestivalRepositoryTest {
                 new GregorianCalendar(2017, 8, 5).getTime()).build();
 
         Artist artist = Artist.of().id(5L).name("Lisa").build();
-        FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)
+        FestivalArtist festivalArtist = FestivalArtist.of().artistId(5L)
                 .playOrder(5L).start(
                 new GregorianCalendar(2017, 8 - 1, 5, 14, 0, 0).getTime()).build();
         festival.setArtists(new ArrayList()

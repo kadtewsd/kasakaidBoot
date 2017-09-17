@@ -67,15 +67,15 @@ public class MusicFestivalServiceTest {
         assertThat(test.size(), is(equalTo(1 )));
         assertThat(test.get(0).getArtists(), notNullValue());
         assertThat(test.get(0).getArtists().size(), is(equalTo(9 )));
-        assertThat(test.get(0).getArtists().get(0).getArtist().getName(), is("Base Ball Bear"));
-        assertThat(test.get(0).getArtists().get(1).getArtist().getName(), is("サンボマスター"));
-        assertThat(test.get(0).getArtists().get(2).getArtist().getName(), is("the telephones"));
-        assertThat(test.get(0).getArtists().get(3).getArtist().getName(), is("パスピエ"));
-        assertThat(test.get(0).getArtists().get(4).getArtist().getName(), is("the band apart"));
-        assertThat(test.get(0).getArtists().get(5).getArtist().getName(), is("空想委員会"));
-        assertThat(test.get(0).getArtists().get(6).getArtist().getName(), is("Polysics"));
-        assertThat(test.get(0).getArtists().get(7).getArtist().getName(), is("ACIDMAN"));
-        assertThat(test.get(0).getArtists().get(8).getArtist().getName(), is("ZAZEN BOYS"));
+        assertThat(test.get(0).getArtists().get(0).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(1).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(2).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(3).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(4).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(5).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(6).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(7).getArtist(), nullValue());
+        assertThat(test.get(0).getArtists().get(8).getArtist(), nullValue());
     }
 
     @Test
