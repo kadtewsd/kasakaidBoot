@@ -41,7 +41,7 @@ public class MusicFestival {
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
+    @OneToMany(mappedBy = "musicFestival")
     @Getter
     @Setter
     private List<FestivalArtist> artists;
