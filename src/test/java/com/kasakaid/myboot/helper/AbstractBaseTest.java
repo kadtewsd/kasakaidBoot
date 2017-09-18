@@ -3,6 +3,7 @@ package com.kasakaid.myboot.helper;
 import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
 import com.kasakaid.myboot.helper.config.TestConfig;
 import com.kasakaid.myboot.helper.resource.MyResource;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = KasakaidBootApplication.class)
 @ActiveProfiles("test")
+@Slf4j
 public abstract class AbstractBaseTest {
 
     @Autowired
