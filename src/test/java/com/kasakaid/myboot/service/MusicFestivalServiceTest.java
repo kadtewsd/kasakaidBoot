@@ -1,10 +1,11 @@
-package com.kasakaid.myboot;
+package com.kasakaid.myboot.service;
 
 import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
+import com.kasakaid.kasakaidBoot.Properties;
 import com.kasakaid.kasakaidBoot.domain.FestivalArtist;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
-import com.kasakaid.myboot.base.MyResource;
+import com.kasakaid.myboot.resource.MyResource;
 import com.kasakaid.myboot.config.TestConfig;
 import com.kasakaid.myboot.verify.ISimpleBean;
 import com.kasakaid.myboot.verify.SimpleBean;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
@@ -35,6 +37,7 @@ import static org.hamcrest.Matchers.*;
 //        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:data.sql")
 //})
 @SpringBootTest(classes = KasakaidBootApplication.class)
+@ActiveProfiles("test")
 public class MusicFestivalServiceTest {
 
     @Before
@@ -96,4 +99,8 @@ public class MusicFestivalServiceTest {
         assertThat(simpleBean.me(), is(SimpleBean.class.getName()));
     }
 
+    @Test
+    public void applicationPropertiesの読み込み() {
+        assertThat(Properties.getProperty("common.key"), is("hoge"));
+    }
 }

@@ -1,4 +1,4 @@
-package com.kasakaid.myboot.base;
+package com.kasakaid.myboot.resource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dbunit.DatabaseUnitException;

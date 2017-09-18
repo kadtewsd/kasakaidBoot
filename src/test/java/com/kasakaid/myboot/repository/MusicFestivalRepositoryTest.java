@@ -1,4 +1,4 @@
-package com.kasakaid.myboot;
+package com.kasakaid.myboot.repository;
 
 import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
 import com.kasakaid.kasakaidBoot.domain.Artist;

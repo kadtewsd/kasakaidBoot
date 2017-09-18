@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 //@ConfigurationProperties
-@PropertySource("classpath:/application.properties")
+//@PropertySource("classpath:/application.properties")
 public class Configuration {
-    @Value("${key}")
+//    @Value("${key}")
     String url;
 
     public String getString() {
