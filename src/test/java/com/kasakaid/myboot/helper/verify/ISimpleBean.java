@@ -1,4 +1,4 @@
-package com.kasakaid.myboot.verify;
+package com.kasakaid.myboot.helper.verify;
 
 public interface ISimpleBean {
     String me();

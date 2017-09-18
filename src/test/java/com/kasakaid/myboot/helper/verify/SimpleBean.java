@@ -1,7 +1,6 @@
-package com.kasakaid.myboot.verify;
+package com.kasakaid.myboot.helper.verify;
 
 import org.springframework.boot.test.context.TestComponent;
-import org.springframework.stereotype.Component;
 
 //@Component
 @TestComponent

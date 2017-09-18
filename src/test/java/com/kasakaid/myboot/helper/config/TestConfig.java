@@ -1,8 +1,8 @@
-package com.kasakaid.myboot.config;
+package com.kasakaid.myboot.helper.config;
 
-import com.kasakaid.myboot.resource.MyResource;
-import com.kasakaid.myboot.verify.ISimpleBean;
-import com.kasakaid.myboot.verify.SimpleBean;
+import com.kasakaid.myboot.helper.resource.MyResource;
+import com.kasakaid.myboot.helper.verify.ISimpleBean;
+import com.kasakaid.myboot.helper.verify.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
