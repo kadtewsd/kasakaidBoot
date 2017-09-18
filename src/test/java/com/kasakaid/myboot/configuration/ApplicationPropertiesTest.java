@@ -14,7 +14,7 @@ public class ApplicationPropertiesTest extends AbstractBaseTest {
 
     @Test
     public void applicationPropertiesの読み込み() {
-        assertThat(Properties.getProperty("common.key"), is("hoge"));
+        assertThat(Properties.getProperty("common.key"), is("this_is_common"));
     }
 
     @Test
@@ -25,6 +25,6 @@ public class ApplicationPropertiesTest extends AbstractBaseTest {
 //    @Test(expected = IllegalArgumentException.class)
     @Test
     public void 開発環境のキーは取得できないテスト() {
-        assertThat(Properties.getProperty("development.key"),nullValue());
+        assertThat(Properties.getProperty("development.key"), nullValue());
     }
 }
