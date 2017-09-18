@@ -9,8 +9,13 @@ import static org.hamcrest.Matchers.is;
 
 public class ApplicationPropertiesTest extends AbstractBaseTest {
 
-        @Test
-        public void applicationPropertiesの読み込み() {
-            assertThat(Properties.getProperty("common.key"), is("hoge"));
-        }
+    @Test
+    public void applicationPropertiesの読み込み() {
+        assertThat(Properties.getProperty("common.key"), is("hoge"));
+    }
+
+    @Test
+    public void テストのみのキーのテスト() {
+        assertThat(Properties.getProperty("test.key"), is("this_is_test_key"));
+    }
 }

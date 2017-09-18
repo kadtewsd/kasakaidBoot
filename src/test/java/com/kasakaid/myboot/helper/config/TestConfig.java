@@ -1,5 +1,6 @@
 package com.kasakaid.myboot.helper.config;
 
+import com.kasakaid.kasakaidBoot.Properties;
 import com.kasakaid.myboot.helper.resource.MyResource;
 import com.kasakaid.myboot.helper.verify.ISimpleBean;
 import com.kasakaid.myboot.helper.verify.SimpleBean;
@@ -28,21 +29,14 @@ public class TestConfig {
     @Bean
     public TransactionAwareDataSourceProxy dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        // environemnent からキーが発見できない。。
-//        dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
-//        dataSource.setUrl(environment.getProperty("spring.datasource.url"));
-//        dataSource.setUsername(environment.getProperty("spring.datasource.username"));
-//        dataSource.setPassword(environment.getProperty("spring.datasource.password"));
-
+        // Autowired した environemnent からキーが発見できない。。
         // log4jdbc が何故かロードできない。
 //        dataSource.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-//        dataSource.setUrl("jdbc:log4jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE");
+        dataSource.setDriverClassName(Properties.getProperty("spring.datasource.driver-class-name"));
+        dataSource.setUrl(Properties.getProperty("spring.datasource.url"));
+        dataSource.setUsername(Properties.getProperty("spring.datasource.username"));
+        dataSource.setPassword(Properties.getProperty("spring.datasource.password"));
 
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE");
-
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
         return new TransactionAwareDataSourceProxy(dataSource);
     }
 
