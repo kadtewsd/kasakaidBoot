@@ -1,32 +1,21 @@
 package com.kasakaid.myboot.service;
 
-import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
-import com.kasakaid.kasakaidBoot.Properties;
 import com.kasakaid.kasakaidBoot.domain.FestivalArtist;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
-import com.kasakaid.myboot.helper.resource.MyResource;
-import com.kasakaid.myboot.helper.config.TestConfig;
+import com.kasakaid.myboot.helper.AbstractBaseTest;
 import com.kasakaid.myboot.helper.verify.ISimpleBean;
 import com.kasakaid.myboot.helper.verify.SimpleBean;
 import lombok.SneakyThrows;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 // No suitable driver found for jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
 //@ContextConfiguration(classes ={KasakaidBootApplication.class, TestConfig.class})
 //MusicFestivalService が NoSuchDefenitionerror
@@ -36,20 +25,14 @@ import static org.hamcrest.Matchers.*;
 //        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql"),
 //        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:data.sql")
 //})
-@SpringBootTest(classes = KasakaidBootApplication.class)
-@ActiveProfiles("test")
-public class MusicFestivalServiceTest {
+public class MusicFestivalServiceTest extends AbstractBaseTest {
 
     @Before
-    public void setup() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        myResource = context.getBean(MyResource.class);
-        simpleBean = context.getBean(ISimpleBean.class);
+    public void setUp() {
+        super.setup();
+        // Autowired の ApplicationContext では Bean は見つからない
+        simpleBean = testConfigApplication.getBean(ISimpleBean.class);
     }
-
-    @Rule
-    //public にしないと怒られる
-    public MyResource myResource;
 
     // テストクラスのBeanを Autowired しようとすると「NoSuchBeanDefinitionException」になる。
     // TestConfig の ComponentScan が効いている気配がない。
@@ -99,8 +82,4 @@ public class MusicFestivalServiceTest {
         assertThat(simpleBean.me(), is(SimpleBean.class.getName()));
     }
 
-    @Test
-    public void applicationPropertiesの読み込み() {
-        assertThat(Properties.getProperty("common.key"), is("hoge"));
-    }
 }
