@@ -1,9 +1,9 @@
 package com.kasakaid.myboot.repository;
 
 import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
-import com.kasakaid.kasakaidBoot.domain.artist.Artist;
 import com.kasakaid.kasakaidBoot.domain.FestivalArtist;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
+import com.kasakaid.kasakaidBoot.domain.artist.Artist;
 import com.kasakaid.kasakaidBoot.domain.artist.Rock;
 import com.kasakaid.kasakaidBoot.repository.MusicFestivalRepository;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
@@ -17,8 +17,10 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -34,12 +36,12 @@ public class MusicFestivalRepositoryTest {
     public void setUp() {
 
         MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").eventDate(
-                new GregorianCalendar(2017, 8, 5).getTime()).build();
+                LocalDate.of(2017, Month.AUGUST, 5)).build();
 
         Artist rock = Rock.of().id(5L).name("Lisa").build();
         FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)
-                .playOrder(5L).start(
-                new GregorianCalendar(2017, 8 - 1, 5, 14, 0, 0).getTime()).build();
+                .playOrder(5).start(
+                 LocalDateTime.of(2017, Month.AUGUST, 5, 14, 0, 0)).build();
         festival.setArtists(new ArrayList()
                 {
                         {

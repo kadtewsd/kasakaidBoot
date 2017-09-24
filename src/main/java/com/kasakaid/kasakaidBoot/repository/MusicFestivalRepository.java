@@ -12,7 +12,7 @@ import java.util.List;
 public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Long> {
 
     @Query("select distinct x from MusicFestival x left outer join fetch x.artists y left outer join fetch y.artist z order by y.playOrder")
-    List<MusicFestival> findAllArtists();
+    List<MusicFestival> findAll();
 
     @EntityGraph(value = "music.festival" , type= EntityGraph.EntityGraphType.FETCH, attributePaths = {"artists"})
     @Query("select distinct x from MusicFestival x where id=?1")

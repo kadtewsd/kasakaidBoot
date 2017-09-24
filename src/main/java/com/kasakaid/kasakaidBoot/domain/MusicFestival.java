@@ -1,9 +1,10 @@
 package com.kasakaid.kasakaidBoot.domain;
 
+import com.kasakaid.kasakaidBoot.utility.LocalDateConverter;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /***
@@ -44,8 +45,8 @@ public class MusicFestival {
     private long artistId;
 
     @Getter
-    @Temporal(TemporalType.DATE)
-    private Date eventDate;
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate eventDate;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
     @Getter

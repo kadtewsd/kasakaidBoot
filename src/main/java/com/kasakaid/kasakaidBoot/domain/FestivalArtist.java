@@ -1,14 +1,16 @@
 package com.kasakaid.kasakaidBoot.domain;
 
 import com.kasakaid.kasakaidBoot.domain.artist.Artist;
+import com.kasakaid.kasakaidBoot.utility.LocalDateTimeConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Builder(builderMethodName = "of")
@@ -24,10 +26,12 @@ public class FestivalArtist {
     @Getter
     private long artistId;
 
+    @Id
     @Getter
-    private long playOrder;
+    private int playOrder;
     @Getter
-    private Date start;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime start;
 
     @ManyToOne
     @JoinColumns({

@@ -18,4 +18,7 @@ public class FestivalArtistPrimaryKey implements Serializable {
     private long festivalId;
     @Column(name = "artist_id", insertable = false, updatable = false)
     private long artistId;
+    @Column(name = "play_order", insertable = false, updatable = false)
+    private int playOrder;
+
 }
