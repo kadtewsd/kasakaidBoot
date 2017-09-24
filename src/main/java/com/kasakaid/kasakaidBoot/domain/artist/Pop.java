@@ -7,6 +7,5 @@ import javax.persistence.Entity;
 
 @Entity
 @Builder(builderMethodName = "of")
-@NoArgsConstructor
 public class Pop extends Artist {
 }

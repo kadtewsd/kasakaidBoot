@@ -21,13 +21,13 @@ public abstract class Artist implements Serializable {
     }
     @Id
     @Getter
-    protected long id;
+    private long id;
 
     @Getter
-    protected String name;
+    private String name;
 
     @Getter
-    protected int members;
+    private int members;
     @OneToOne(mappedBy = "artist")
     @JoinColumn(name = "artist_id", referencedColumnName = "id")
     protected FestivalArtist festivalArtist;
