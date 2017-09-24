@@ -13,7 +13,7 @@ public class MusicFestivalService {
     private MusicFestivalRepository musicFestivalRepository;
 
     public List<MusicFestival> findAll() {
-        return musicFestivalRepository.findAll();
+        return musicFestivalRepository.findAllArtists();
     }
 
     public MusicFestival findOne(Long id) {

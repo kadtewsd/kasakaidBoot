@@ -47,7 +47,7 @@ public class MusicFestival {
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
-    @OneToMany(mappedBy = "musicFestival")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
     @Getter
     @Setter
     @OrderBy("playOrder ASC")

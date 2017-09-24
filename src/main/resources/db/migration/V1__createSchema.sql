@@ -14,9 +14,29 @@ CREATE TABLE IF NOT EXISTS `music_festival` (
 
 CREATE TABLE IF NOT EXISTS `artist` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS rock (
+  id bigint(20) NOT NULL,
+  name varchar(255),
+  members int,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS punk (
+  id bigint(20) NOT NULL,
+  name varchar(255),
+  members int,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS pop (
+  id bigint(20) NOT NULL,
+  name varchar(255),
+  members int,
+  PRIMARY KEY (`id`)
+);
 
 CREATE TABLE IF NOT EXISTS `festival_artist` (
   `artist_id` bigint(20) NOT NULL,

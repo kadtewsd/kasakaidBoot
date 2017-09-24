@@ -1,10 +1,10 @@
 package com.kasakaid.myboot.repository;
 
 import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
-import com.kasakaid.kasakaidBoot.domain.Artist;
+import com.kasakaid.kasakaidBoot.domain.artist.Artist;
 import com.kasakaid.kasakaidBoot.domain.FestivalArtist;
-import com.kasakaid.kasakaidBoot.domain.FestivalArtistPrimaryKey;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
+import com.kasakaid.kasakaidBoot.domain.artist.Rock;
 import com.kasakaid.kasakaidBoot.repository.MusicFestivalRepository;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
 import org.junit.Before;
@@ -19,7 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -37,7 +36,7 @@ public class MusicFestivalRepositoryTest {
         MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").eventDate(
                 new GregorianCalendar(2017, 8, 5).getTime()).build();
 
-        Artist artist = Artist.of().id(5L).name("Lisa").build();
+        Artist rock = Rock.of().id(5L).name("Lisa").build();
         FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)
                 .playOrder(5L).start(
                 new GregorianCalendar(2017, 8 - 1, 5, 14, 0, 0).getTime()).build();

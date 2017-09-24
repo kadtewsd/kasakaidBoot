@@ -1,3 +1,6 @@
 artist
+rock
+punk
+pop
 music_festival
 festival_artist

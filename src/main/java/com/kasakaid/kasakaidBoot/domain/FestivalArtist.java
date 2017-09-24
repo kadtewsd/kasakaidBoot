@@ -1,5 +1,6 @@
 package com.kasakaid.kasakaidBoot.domain;
 
+import com.kasakaid.kasakaidBoot.domain.artist.Artist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class FestivalArtist {
     })
     private MusicFestival musicFestival;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @Getter
     private Artist artist;
 }
