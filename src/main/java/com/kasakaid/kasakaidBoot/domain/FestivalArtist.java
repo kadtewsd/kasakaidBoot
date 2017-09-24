@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Builder(builderMethodName = "of")
@@ -30,11 +31,14 @@ public class FestivalArtist {
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn( name = "festival_id"),
+            @JoinColumn( name = "festival_id")
     })
     private MusicFestival musicFestival;
 
-    @OneToOne
+    // 実質 1 対 1 になっておれば良いがリレーション上 1 対 多の関係になるので、OneToOne を使うと、
+    // id 10 で複数行が見つかりました、と出てしまう。このため、OneToMany - ManyToOne 戦略を使う。
     @Getter
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
     private Artist artist;
 }

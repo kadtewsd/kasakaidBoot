@@ -40,7 +40,7 @@ public class MusicFestivalServiceTypeTest extends AbstractBaseTest {
 
     private void validateArtists(List<FestivalArtist> artists) {
         assertThat(artists, notNullValue());
-        assertThat(artists.size(), is(equalTo(9 )));
+        assertThat(artists.size(), is(equalTo(11 )));
         assertThat(artists.get(0).getArtist().getClass(), typeCompatibleWith(Rock.class));
         assertThat(artists.get(1).getArtist().getClass(), typeCompatibleWith(Punk.class));
         assertThat(artists.get(2).getArtist().getClass(), typeCompatibleWith(Rock.class));
@@ -50,6 +50,8 @@ public class MusicFestivalServiceTypeTest extends AbstractBaseTest {
         assertThat(artists.get(6).getArtist().getClass(), typeCompatibleWith(Rock.class));
         assertThat(artists.get(7).getArtist().getClass(), typeCompatibleWith(Rock.class));
         assertThat(artists.get(8).getArtist().getClass(), typeCompatibleWith(Rock.class));
+        assertThat(artists.get(9).getArtist().getClass(), typeCompatibleWith(Rock.class));
+        assertThat(artists.get(10).getArtist().getClass(), typeCompatibleWith(Rock.class));
     }
 
     private void logType(List<FestivalArtist> artists) {

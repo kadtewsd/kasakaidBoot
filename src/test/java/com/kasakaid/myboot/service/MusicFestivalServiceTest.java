@@ -59,13 +59,13 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
         MusicFestival test = service.findOne(1L);
         assertThat(test, notNullValue());
         assertThat(test.getArtists(), notNullValue());
-        assertThat(test.getArtists().size(), is(equalTo(9 )));
+        assertThat(test.getArtists().size(), is(equalTo(11 )));
         validateArtists(test.getArtists());
     }
 
     private void validateArtists(List<FestivalArtist> artists) {
         assertThat(artists, notNullValue());
-        assertThat(artists.size(), is(equalTo(9 )));
+        assertThat(artists.size(), is(equalTo(11 )));
         assertThat(artists.get(0).getArtist().getName(), is("Base Ball Bear"));
         assertThat(artists.get(1).getArtist().getName(), is("サンボマスター"));
         assertThat(artists.get(2).getArtist().getName(), is("the telephones"));
@@ -75,6 +75,8 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
         assertThat(artists.get(6).getArtist().getName(), is("Polysics"));
         assertThat(artists.get(7).getArtist().getName(), is("ACIDMAN"));
         assertThat(artists.get(8).getArtist().getName(), is("ZAZEN BOYS"));
+        assertThat(artists.get(9).getArtist().getName(), is("ASIAN KUNG-FU GENERATION"));
+        assertThat(artists.get(10).getArtist().getName(), is("ASIAN KUNG-FU GENERATION"));
     }
     @Test
     public void テストクラスのBean化() {

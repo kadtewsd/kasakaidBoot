@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +29,8 @@ public abstract class Artist implements Serializable {
 
     @Getter
     private int members;
-    @OneToOne(mappedBy = "artist")
-    @JoinColumn(name = "artist_id", referencedColumnName = "id")
-    protected FestivalArtist festivalArtist;
+    // 実質 1 対 1 になっておれば良いがリレーション上 1 対 多の関係になるので、OneToOne を使うと、
+    // id 10 で複数行が見つかりました、と出てしまう。このため、OneToMany - ManyToOne 戦略を使う。
+    @OneToMany(mappedBy = "artist")
+    private List<FestivalArtist> festivalArtist;
 }

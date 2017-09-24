@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `festival_artist` (
   `festival_id` bigint(20) NOT NULL,
   `play_order` bigint(2) NOT NULL,
   `start` DATETIME,
-  PRIMARY KEY (`artist_id`, `festival_id`)
+  PRIMARY KEY (artist_id, festival_id, play_order)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `accompany` (
