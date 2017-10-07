@@ -1,6 +1,7 @@
 package com.kasakaid.kasakaidBoot.repository;
 
 import com.kasakaid.kasakaidBoot.domain.artist.Group;
+import com.kasakaid.kasakaidBoot.domain.artist.Group_;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
@@ -13,14 +14,25 @@ public class MemberSpecification {
         return (root, query, cb) -> {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
-////                if (root.get("members") != null) {
-                    predicates.add(
-                            cb.and(cb.greaterThanOrEqualTo(root.get("members"), lower),
-                                    cb.lessThanOrEqualTo(root.get("members"), upper))
-                    );
+                predicates.add(
+                        cb.and(cb.greaterThanOrEqualTo(root.get("members"), lower),
+                                cb.lessThanOrEqualTo(root.get("members"), upper))
+                );
 
-////                }
-//
+            });
+            return cb.or(predicates.toArray(new Predicate[predicates.size()]));
+        };
+    }
+
+    public static Specification<Group> membersByMetamodel(Map<Integer, Integer> lowerUpper) {
+        return (root, query, cb) -> {
+            final Collection<Predicate> predicates = new ArrayList<>();
+            lowerUpper.forEach((lower, upper) -> {
+                predicates.add(
+                        cb.and(cb.greaterThanOrEqualTo(root.get(Group_.members), lower),
+                                cb.lessThanOrEqualTo(root.get(Group_.members), upper))
+                );
+
             });
             return cb.or(predicates.toArray(new Predicate[predicates.size()]));
         };

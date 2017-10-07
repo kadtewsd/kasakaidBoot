@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.kasakaid.kasakaidBoot.repository.MemberSpecification.members;
+import static com.kasakaid.kasakaidBoot.repository.MemberSpecification.membersByMetamodel;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -43,6 +44,23 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
 //                members(this.members));
         List<Group> test = groupRepository.findAll(
                 members(this.members));
+        logArtist(test);
+        assertThat(test.size(), is(equalTo(3)));
+        Artist sukapara = test.get(0); // 東京スカらパラダイス
+        東京スカパラダイスオーケストラ(sukapara);
+        Artist dragonAsh = test.get(1);
+        dragonAsh(dragonAsh);
+        Artist bz = test.get(2);
+        bz(bz);
+    }
+
+    @Test
+    public void アーティストの人数をメタモデルでテスト() throws Exception {
+        this.myResource.insertData("music_festival");
+//        List<Artist> test = groupRepository.findAll(
+//                members(this.members));
+        List<Group> test = groupRepository.findAll(
+                membersByMetamodel(this.members));
         logArtist(test);
         assertThat(test.size(), is(equalTo(3)));
         Artist sukapara = test.get(0); // 東京スカらパラダイス
