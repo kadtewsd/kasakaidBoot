@@ -16,10 +16,11 @@ import java.util.List;
 @Getter
 public abstract class Artist implements Serializable {
 
-    Artist (long id, String name) {
+    Artist(long id, String name) {
         this.id = id;
         this.name = name;
     }
+
     @Id
     private long id;
 

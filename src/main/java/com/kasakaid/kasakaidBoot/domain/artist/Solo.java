@@ -1,5 +1,6 @@
 package com.kasakaid.kasakaidBoot.domain.artist;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.Enumerated;
 
 @Entity
 @NoArgsConstructor
+@Getter
 public class Solo extends Artist {
 
     @Enumerated(EnumType.STRING)
