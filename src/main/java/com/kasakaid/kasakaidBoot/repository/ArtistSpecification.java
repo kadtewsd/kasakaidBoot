@@ -14,8 +14,7 @@ public class ArtistSpecification {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
                 predicates.add(
-                        cb.and(cb.greaterThanOrEqualTo(root.get(Group_.members), lower),
-                                cb.lessThanOrEqualTo(root.get(Group_.members), upper))
+                        cb.and(cb.between(root.get(Group_.members), lower, upper))
                 );
 
             });
