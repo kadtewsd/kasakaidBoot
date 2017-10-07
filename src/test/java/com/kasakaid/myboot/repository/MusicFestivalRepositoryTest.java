@@ -4,7 +4,8 @@ import com.kasakaid.kasakaidBoot.KasakaidBootApplication;
 import com.kasakaid.kasakaidBoot.domain.FestivalArtist;
 import com.kasakaid.kasakaidBoot.domain.MusicFestival;
 import com.kasakaid.kasakaidBoot.domain.artist.Artist;
-import com.kasakaid.kasakaidBoot.domain.artist.Rock;
+import com.kasakaid.kasakaidBoot.domain.artist.Sex;
+import com.kasakaid.kasakaidBoot.domain.artist.Solo;
 import com.kasakaid.kasakaidBoot.repository.MusicFestivalRepository;
 import com.kasakaid.kasakaidBoot.service.MusicFestivalService;
 import org.junit.Before;
@@ -38,10 +39,10 @@ public class MusicFestivalRepositoryTest {
         MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").eventDate(
                 LocalDate.of(2017, Month.AUGUST, 5)).build();
 
-        Artist rock = Rock.of().id(5L).name("Lisa").build();
+        Artist solo = new Solo(5L, "Lisa", Sex.Female);
         FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)
                 .playOrder(5).start(
-                 LocalDateTime.of(2017, Month.AUGUST, 5, 14, 0, 0)).build();
+                 LocalDateTime.of(2017, Month.AUGUST, 5, 14, 0, 0)).artist(solo).build();
         festival.setArtists(new ArrayList()
                 {
                         {

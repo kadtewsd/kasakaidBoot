@@ -42,9 +42,6 @@ public class MusicFestival {
     private String place;
 
     @Getter
-    private long artistId;
-
-    @Getter
     @Convert(converter = LocalDateConverter.class)
     private LocalDate eventDate;
 
