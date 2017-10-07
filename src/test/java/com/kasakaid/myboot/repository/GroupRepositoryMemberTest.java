@@ -18,11 +18,13 @@ import static com.kasakaid.kasakaidBoot.repository.MemberSpecification.membersBy
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.typeCompatibleWith;
 
 @Slf4j
 public class GroupRepositoryMemberTest extends AbstractBaseTest {
 
     private Map<Integer, Integer> members;
+
     @Before
     public void setUp() {
         super.setup();
@@ -76,6 +78,9 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
         assertThat(artist.getName(), is("東京スカパラダイスオーケストラ"));
         assertThat(artist.getGenre().getId(), is(8));
         assertThat(artist.getGenre().getName(), is("SKA"));
+        assertThat(artist.getClass(), typeCompatibleWith(Group.class));
+        Group group = (Group) artist;
+        assertThat(group.getMembers(), is(7));
     }
 
     public static void dragonAsh(Artist dragonAsh) {
@@ -84,16 +89,23 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
         assertThat(dragonAsh.getGenre().getId(), is(1));
         assertThat(dragonAsh.getGenre().getName(), is("ROCK"));
 
+        assertThat(dragonAsh.getClass(), typeCompatibleWith(Group.class));
+        Group group = (Group) dragonAsh;
+        assertThat(group.getMembers(), is(7));
     }
 
-   public static void bz(Artist bz) {
+    public static void bz(Artist bz) {
         assertThat(bz.getId(), is(22L));
         assertThat(bz.getName(), is("B'z"));
         assertThat(bz.getGenre().getId(), is(7));
         assertThat(bz.getGenre().getName(), is("Heavy Metal"));
+
+        assertThat(bz.getClass(), typeCompatibleWith(Group.class));
+        Group group = (Group) bz;
+        assertThat(group.getMembers(), is(2));
     }
 
-    public static  <T extends Artist> void logArtist(List<T> artists) {
+    public static <T extends Artist> void logArtist(List<T> artists) {
         artists.forEach(x -> log.info("ID {} Name {}", x.getId(), x.getName()));
     }
 }
