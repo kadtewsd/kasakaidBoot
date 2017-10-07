@@ -7,5 +7,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 public class Solo_ {
 
     // String にすることで Enum を指定すると、String で検索してくれる。
-    public static volatile SingularAttribute<Solo, String> sex;
+    // -> と思われたが、別に Enum を指定しても問題はないらしい
+    public static volatile SingularAttribute<Solo, Sex> sex;
 }

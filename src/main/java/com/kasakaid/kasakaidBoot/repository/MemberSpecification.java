@@ -15,8 +15,7 @@ public class MemberSpecification {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
                 predicates.add(
-                        cb.and(cb.greaterThanOrEqualTo(root.get("members"), lower),
-                                cb.lessThanOrEqualTo(root.get("members"), upper))
+                        cb.and(cb.between(root.get("members"), lower, upper))
                 );
 
             });
