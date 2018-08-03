@@ -19,7 +19,7 @@ public class MusicFestivalService {
     }
 
     public MusicFestival findOne(Long id) {
-        return musicFestivalRepository.findById(id);
+        return musicFestivalRepository.findById(id).get();
     }
 
     public List<MusicFestival> findByMembers(Map<Integer, Integer> members) {

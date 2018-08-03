@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Long> {
@@ -16,5 +17,5 @@ public interface MusicFestivalRepository extends JpaRepository<MusicFestival, Lo
 
     @EntityGraph(value = "music.festival" , type= EntityGraph.EntityGraphType.FETCH, attributePaths = {"artists"})
     @Query("select distinct x from MusicFestival x where id=?1")
-    MusicFestival findById(Long id);
+    Optional<MusicFestival> findById(Long id);
 }

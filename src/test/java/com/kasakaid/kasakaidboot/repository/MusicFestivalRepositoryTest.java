@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -50,7 +51,7 @@ public class MusicFestivalRepositoryTest {
                 });
 
         Mockito.when(musicFestivalRepository.findById(3L))
-                .thenReturn(festival);
+                .thenReturn(Optional.of(festival));
     }
 
     @TestConfiguration
