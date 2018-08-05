@@ -14,7 +14,7 @@ import javax.persistence.Table;
 //@DiscriminatorColumn(name = "dtype")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 // abstract にすると find するときにインスタンス化できない。が気がない。
-public class Group extends Artist {
+public abstract class Group extends Artist {
 
     Group(long id, String name, int members) {
         super(id, name);

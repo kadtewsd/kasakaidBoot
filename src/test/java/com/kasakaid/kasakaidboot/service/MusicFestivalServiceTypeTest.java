@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 @Slf4j
@@ -33,10 +34,15 @@ public class MusicFestivalServiceTypeTest extends AbstractBaseTest {
         List<MusicFestival> test = service.findAll();
         assertThat(test.size(), is(greaterThan(0)));
         assertThat(test.size(), is(equalTo(3)));
-        MusicFestival festival = test.get(0);
-        validateArtists(festival.getArtists());
-        validateDuplicateArtist(festival.getArtists());
-        logType(festival.getArtists());
+        Optional<MusicFestival> optFestival = test.stream().filter(x -> x.getId() == 1).findFirst();
+        if (optFestival.isPresent()) {
+            MusicFestival festival = optFestival.get();
+            validateArtists(festival.getArtists());
+            validateDuplicateArtist(festival.getArtists());
+            logType(festival.getArtists());
+        } else {
+            assertThat("街灯のデータが取得できませんでした。", true, is(false));
+        }
     }
 
     private void validateArtists(List<FestivalArtist> artists) {
