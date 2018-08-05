@@ -23,8 +23,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.core.IsNull.*;
 
 @SpringBootTest(classes = KasakaidBootApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,8 +36,8 @@ public class MusicFestivalRepositoryTest {
     @Before
     public void setUp() {
 
-        MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").eventDate(
-                LocalDate.of(2017, Month.AUGUST, 5)).build();
+        MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").build().eventDate(
+                LocalDate.of(2017, Month.AUGUST, 5));
 
         Artist solo = new Solo(5L, "Lisa", Sex.Female);
         FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)

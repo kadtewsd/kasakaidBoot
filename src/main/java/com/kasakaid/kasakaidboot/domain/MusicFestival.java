@@ -1,9 +1,23 @@
 package com.kasakaid.kasakaidboot.domain;
 
 import com.kasakaid.kasakaidboot.utility.LocalDateConverter;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,7 +30,6 @@ import java.util.List;
  * There is no cascade option on an ElementCollection, the target objects are always persisted, merged, removed with their parent.
  * ElementCollection still can use a fetch type and defaults to LAZY the same as other collection mappings.
  */
-@NoArgsConstructor
 @Entity
 @AllArgsConstructor
 @NamedEntityGraph(
@@ -41,13 +54,30 @@ public class MusicFestival {
     @Getter
     private String place;
 
-    @Getter
-    @Convert(converter = LocalDateConverter.class)
+    @Access(AccessType.PROPERTY)
     private LocalDate eventDate;
+
+    @Column(nullable = false)
+    public LocalDate getEventDate() {
+        return this.eventDate;
+    }
+    @Convert(converter = LocalDateConverter.class)
+    private void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public MusicFestival eventDate(LocalDate _eventDate) {
+        this.setEventDate(_eventDate);
+        return this;
+    }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
     @Getter
     @Setter
     @OrderBy("playOrder ASC")
     private List<FestivalArtist> artists;
+
+    public MusicFestival() {
+        System.out.print(1);
+    }
 }
