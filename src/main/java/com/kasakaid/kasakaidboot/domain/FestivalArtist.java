@@ -1,13 +1,22 @@
 package com.kasakaid.kasakaidboot.domain;
 
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
+import com.kasakaid.kasakaidboot.domain.service.ArtistTransformer;
 import com.kasakaid.kasakaidboot.utility.LocalDateTimeConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Entity
@@ -43,4 +52,19 @@ public class FestivalArtist {
     @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
+    /**
+     * このタイミングでは Hibernate 的に dtype は null らしい。
+     * @param artist
+     */
+    private void setArtist(Artist artist) {
+        this.artist = artist instanceof ArtistTransformer ? ((ArtistTransformer) artist).transform()
+                : artist;
+    }
+
+    public Artist renewArtists(ArtistTransformer transformer) {
+        this.artist = transformer.transform();
+        return artist;
+    }
+
 }
