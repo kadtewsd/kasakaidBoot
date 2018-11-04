@@ -28,27 +28,27 @@ def versions = [
         pmd: "5.8.1"
 ]
 
-apply plugin: "checkstyle"
-checkstyle {
-    toolVersion = "${versions.checkstyle}"
-    ignoreFailures = true
-}
-
-apply plugin: "pmd"
-pmd {
-    toolVersion = "${versions.pmd}"
-    ignoreFailures = true
-    consoleOutput = true //incubating
-    ruleSetFiles = files("config/pmd/mainrulesets.xml", "config/pmd/testrulesets.xml")
-}
-
-apply plugin: "findbugs"
-findbugs {
-    toolVersion = "${versions.findbugs}"
-    ignoreFailures = true // true にするとレポートがコンソールに出力されてバグが検出されてもコンパイルがとおります。
-    excludeFilter = file("$rootDir/config/findbugs/exclude.xml")
-    effort = "max"
-}
+//apply plugin: "checkstyle"
+//checkstyle {
+//    toolVersion = "${versions.checkstyle}"
+//    ignoreFailures = true
+//}
+//
+//apply plugin: "pmd"
+//pmd {
+//    toolVersion = "${versions.pmd}"
+//    ignoreFailures = true
+//    consoleOutput = true //incubating
+//    ruleSetFiles = files("config/pmd/mainrulesets.xml", "config/pmd/testrulesets.xml")
+//}
+//
+//apply plugin: "findbugs"
+//findbugs {
+//    toolVersion = "${versions.findbugs}"
+//    ignoreFailures = true // true にするとレポートがコンソールに出力されてバグが検出されてもコンパイルがとおります。
+//    excludeFilter = file("$rootDir/config/findbugs/exclude.xml")
+//    effort = "max"
+//}
 
 apply plugin: "cpd"
 cpdCheck {

@@ -1,7 +1,6 @@
 package com.kasakaid.kasakaidboot.domain.artist;
 
 import com.kasakaid.kasakaidboot.domain.service.ArtistTransformer;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 /***** MappedsuperClass を継承した! *************
  // abstract にしないと、取得されるインスタンスの肩は Group になる。
@@ -20,18 +18,14 @@ import javax.persistence.Table;
  Joined にすると Single Table でできたことができないらしい。
 ***********************************************/
 @NoArgsConstructor
-@Table(name ="group_artist")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Entity
-public class Group extends MappedArtist implements ArtistTransformer {
+public abstract class Group extends MappedArtist implements ArtistTransformer {
 
     Group(long id, String name, int members) {
-        super(id, name);
-        this.members = members;
+        super(id, name, members);
     }
-    @Getter
-    private int members;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

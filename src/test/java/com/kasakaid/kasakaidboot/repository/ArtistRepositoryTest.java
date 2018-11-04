@@ -84,8 +84,8 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     public static void 上白石(Artist mone) {
         assertThat(mone.getId(), is(18L));
         assertThat(mone.getName(), is("上白石萌音"));
-        assertThat(mone.getGenre().getId(), is(3));
-        assertThat(mone.getGenre().getName(), is("POP"));
+        assertThat(mone.getId(), is(3));
+        assertThat(mone.getName(), is("POP"));
         assertThat(mone.getClass(), typeCompatibleWith(Solo.class));
         Solo solo = (Solo) mone;
         assertThat(solo.getSex(), is(Sex.Female));
@@ -95,8 +95,8 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     public static void lisa(Artist lisa) {
         assertThat(lisa.getId(), is(19L));
         assertThat(lisa.getName(), is("LiSA"));
-        assertThat(lisa.getGenre().getId(), is(1));
-        assertThat(lisa.getGenre().getName(), is("ROCK"));
+        assertThat(lisa.getId(), is(1));
+        assertThat(lisa.getName(), is("ROCK"));
         assertThat(lisa.getClass(), typeCompatibleWith(Solo.class));
         Solo solo = (Solo) lisa;
         assertThat(solo.getSex(), is(Sex.Female));

@@ -75,8 +75,8 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
     public static void 東京スカパラダイスオーケストラ(Artist artist) {
         assertThat(artist.getId(), is(11L));
         assertThat(artist.getName(), is("東京スカパラダイスオーケストラ"));
-        assertThat(artist.getGenre().getId(), is(8));
-        assertThat(artist.getGenre().getName(), is("SKA"));
+        assertThat(artist.getId(), is(8));
+        assertThat(artist.getName(), is("SKA"));
         assertThat(artist.getClass(), typeCompatibleWith(Group.class));
         Group group = (Group) artist;
         assertThat(group.getMembers(), is(7));
@@ -85,8 +85,8 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
     public static void dragonAsh(Artist dragonAsh) {
         assertThat(dragonAsh.getId(), is(15L));
         assertThat(dragonAsh.getName(), is("Dragon Ash"));
-        assertThat(dragonAsh.getGenre().getId(), is(1));
-        assertThat(dragonAsh.getGenre().getName(), is("ROCK"));
+        assertThat(dragonAsh.getId(), is(1));
+        assertThat(dragonAsh.getName(), is("ROCK"));
 
         assertThat(dragonAsh.getClass(), typeCompatibleWith(Group.class));
         Group group = (Group) dragonAsh;
@@ -96,8 +96,8 @@ public class GroupRepositoryMemberTest extends AbstractBaseTest {
     public static void bz(Artist bz) {
         assertThat(bz.getId(), is(22L));
         assertThat(bz.getName(), is("B'z"));
-        assertThat(bz.getGenre().getId(), is(7));
-        assertThat(bz.getGenre().getName(), is("Heavy Metal"));
+        assertThat(bz.getId(), is(7));
+        assertThat(bz.getName(), is("Heavy Metal"));
 
         assertThat(bz.getClass(), typeCompatibleWith(Group.class));
         Group group = (Group) bz;

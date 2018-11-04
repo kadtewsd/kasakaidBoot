@@ -58,8 +58,8 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
         assertThat(festivalArtist.getStart(), is(LocalDateTime.of(2016, Month.MAY, 21, 16, 30, 00)));
         assertThat(festivalArtist.getArtist().getId(), is(14));
         assertThat(festivalArtist.getArtist().getName(), is("東京スカパラダイスオーケストラ"));
-        assertThat(festivalArtist.getArtist().getGenre().getId(), is(1));
-        assertThat(festivalArtist.getArtist().getGenre().getName(), is("ROCK"));
+        assertThat(festivalArtist.getArtist().getId(), is(1));
+        assertThat(festivalArtist.getArtist().getName(), is("ROCK"));
     }
 
     private void ロッキンジャパンの検証(MusicFestival rockin) {
@@ -73,24 +73,24 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
         assertThat(dragonAsh.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 11, 50, 00)));
         assertThat(dragonAsh.getArtist().getId(), is(15));
         assertThat(dragonAsh.getArtist().getName(), is("Dragon Ash"));
-        assertThat(dragonAsh.getArtist().getGenre().getId(), is(1));
-        assertThat(dragonAsh.getArtist().getGenre().getName(), is("ROCK"));
+        assertThat(dragonAsh.getArtist().getId(), is(1));
+        assertThat(dragonAsh.getArtist().getName(), is("ROCK"));
 
         FestivalArtist mone = rockin.getArtists().get(1);
         assertThat(mone.getPlayOrder(), is(5));
         assertThat(mone.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 14, 00, 00)));
         assertThat(mone.getArtist().getId(), is(18));
         assertThat(mone.getArtist().getName(), is("上白石萌音"));
-        assertThat(mone.getArtist().getGenre().getId(), is(3));
-        assertThat(mone.getArtist().getGenre().getName(), is("POP"));
+        assertThat(mone.getArtist().getId(), is(3));
+        assertThat(mone.getArtist().getName(), is("POP"));
 
         FestivalArtist lisa = rockin.getArtists().get(2);
         assertThat(lisa.getPlayOrder(), is(6));
         assertThat(lisa.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 14, 00, 00)));
         assertThat(lisa.getArtist().getId(), is(19));
         assertThat(lisa.getArtist().getName(), is("LiSA"));
-        assertThat(lisa.getArtist().getGenre().getId(), is(1));
-        assertThat(lisa.getArtist().getGenre().getName(), is("ROCK"));
+        assertThat(lisa.getArtist().getId(), is(1));
+        assertThat(lisa.getArtist().getName(), is("ROCK"));
 
     }
 }
