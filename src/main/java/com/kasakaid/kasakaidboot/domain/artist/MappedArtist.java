@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.MappedSuperclass;
 
 /***** MappedsuperClass にしちゃうよ! *************
- // abstract にしないと、取得されるインスタンスの肩は Group になる。
+ // abstract にしないと、取得されるインスタンスの肩は MusicGroup になる。
  // abstract にすると find の時にインスタンス化できない
  このため、Entity ではなくて、Mappedsuperclass にする。
  これで、abstract にすることができるので、サブクラスの

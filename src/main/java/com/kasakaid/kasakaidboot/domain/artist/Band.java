@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 @NoArgsConstructor
 @DiscriminatorValue("band")
-public class Band extends Group {
+public class Band extends MusicGroup {
     public Band(long id, String name, int members) {
         super(id, name, members);
     }

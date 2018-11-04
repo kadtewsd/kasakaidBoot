@@ -1,6 +1,6 @@
 package com.kasakaid.kasakaidboot.repository;
 
-import com.kasakaid.kasakaidboot.domain.artist.Group;
+import com.kasakaid.kasakaidboot.domain.artist.MusicGroup;
 import com.kasakaid.kasakaidboot.domain.artist.Group_;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public class MemberSpecification {
-    public static Specification<Group> members(Map<Integer, Integer> lowerUpper) {
+    public static Specification<MusicGroup> members(Map<Integer, Integer> lowerUpper) {
         return (root, query, cb) -> {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
@@ -23,7 +23,7 @@ public class MemberSpecification {
         };
     }
 
-    public static Specification<Group> membersByMetamodel(Map<Integer, Integer> lowerUpper) {
+    public static Specification<MusicGroup> membersByMetamodel(Map<Integer, Integer> lowerUpper) {
         return (root, query, cb) -> {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {

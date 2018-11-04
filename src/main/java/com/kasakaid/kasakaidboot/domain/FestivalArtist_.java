@@ -1,6 +1,6 @@
 package com.kasakaid.kasakaidboot.domain;
 
-import com.kasakaid.kasakaidboot.domain.artist.Group;
+import com.kasakaid.kasakaidboot.domain.artist.MusicGroup;
 
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -9,6 +9,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(FestivalArtist.class)
 public class FestivalArtist_ {
 
-    public static volatile CollectionAttribute<FestivalArtist, Group> group;
+    public static volatile CollectionAttribute<FestivalArtist, MusicGroup> group;
 
 }

@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistMembers;
 import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistWithId;
-import static com.kasakaid.kasakaidboot.repository.GroupRepositoryMemberTest.*;
+import static com.kasakaid.kasakaidboot.repository.MusicGroupRepositoryMemberTest.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.typeCompatibleWith;

@@ -1,6 +1,5 @@
-genre
 artist
-group_artist
+music_group
 solo
 music_festival
 festival_artist

@@ -12,7 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 /***** MappedsuperClass を継承した! *************
- // abstract にしないと、取得されるインスタンスの肩は Group になる。
+ // abstract にしないと、取得されるインスタンスの肩は MusicGroup になる。
  // abstract にすると find の時にインスタンス化できない
  このため、Entity ではなくて、Mappedsuperclass にするが全然ダメ。
  Joined にすると Single Table でできたことができないらしい。
@@ -21,9 +21,9 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Entity
-public abstract class Group extends MappedArtist implements ArtistTransformer {
+public class MusicGroup extends MappedArtist implements ArtistTransformer {
 
-    Group(long id, String name, int members) {
+    MusicGroup(long id, String name, int members) {
         super(id, name, members);
     }
 

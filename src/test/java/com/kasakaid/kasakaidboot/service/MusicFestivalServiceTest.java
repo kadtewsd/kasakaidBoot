@@ -30,7 +30,6 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
     public void setUp() {
         super.setup();
         // Autowired の ApplicationContext では Bean は見つからない
-        simpleBean = testConfigApplication.getBean(ISimpleBean.class);
     }
 
     // テストクラスのBeanを Autowired しようとすると「NoSuchBeanDefinitionException」になる。

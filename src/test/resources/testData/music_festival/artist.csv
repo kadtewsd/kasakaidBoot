@@ -1,23 +1,23 @@
-id,name,genre
-1,Base Ball Bear,1
-2,サンボマスター,2
-3,the telephones,1
-4,パスピエ,3
-5,the band apart,1
-6,空想委員会,1
-7,Polysics,1
-8,ACIDMAN,1
-9,ZAZEN BOYS,1
-10,ASIAN KUNG-FU Generation,1
-11,東京スカパラダイスオーケストラ,8
-12,ゲスの極み乙女,1
-13,サカナクション,1
-14,ゴールデンボンバー,1
-15,Dragon Ash,1
-16,水曜日のカンパネラ,4
-17,Suchmos,5
-18,上白石萌音,3
-19,LiSA,1
-20,フレデリック,1
-21,マキシマム・ザ・ホルモン,6
-22,B'z,7
+id,name,genre,members
+1,Base Ball Bear,ROCK,4
+2,サンボマスター,PUNK,3
+3,the telephones,ROCK,4
+4,パスピエ,POP,5
+5,the band apart,ROCK,4
+6,空想委員会,ROCK,3
+7,Polysics,ROCK,4
+8,ACIDMAN,ROCK,3
+9,ZAZEN BOYS,ROCK,4
+10,ASIAN KUNG-FU Generation,ROCK,4
+11,東京スカパラダイスオーケストラ,SKA,10
+12,ゲスの極み乙女,ROCK,4
+13,サカナクション,ROCK,5
+14,ゴールデンボンバー,ROCK,4
+15,Dragon Ash,ROCK,8
+16,水曜日のカンパネラ,CLUB,1
+17,Suchmos,FUNK,4
+18,上白石萌音,POP,1
+19,LiSA,ROCK,1
+20,フレデリック,ROCK,3
+21,マキシマム・ザ・ホルモン,HARD_CORE,4
+22,B'z,HARD_ROCK,5
