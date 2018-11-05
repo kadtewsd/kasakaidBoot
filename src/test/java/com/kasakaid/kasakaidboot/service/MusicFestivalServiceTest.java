@@ -10,7 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -36,7 +38,7 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
     // TestConfig の ComponentScan が効いている気配がない。
     // 下記のページでインターフェースでやると良いとあるが、インターフェースを使ってやってもだめ。
     //https://stackoverflow.com/questions/3413639/how-to-get-spring-to-autowire-integration-test-class-using-multiple-contexts
-//    @Autowired
+    @Autowired
     private ISimpleBean simpleBean;
     @Autowired
     private MusicFestivalService service;
@@ -44,9 +46,14 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
     @Test
     public void test1() throws Exception {
         this.myResource.insertData("music_festival");
-        List<MusicFestival> test = service.findAll();
+        List<MusicFestival> test = service.findAll()
+                .stream()
+                .sorted(Comparator.comparing(MusicFestival::getEventDate)
+                        .thenComparing(MusicFestival::getId))
+                .collect(Collectors.toList());
         assertThat(test.size(), is(greaterThan(0)));
-        assertThat(test.size(), is(equalTo(1 )));
+        assertThat(test.size(), is(equalTo(3)));
+        assertThat(test.get(0).getName(), is("JAPAN JAM BEACH 2015"));
         validateArtists(test.get(0).getArtists());
     }
 
@@ -57,13 +64,13 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
         MusicFestival test = service.findOne(1L);
         assertThat(test, notNullValue());
         assertThat(test.getArtists(), notNullValue());
-        assertThat(test.getArtists().size(), is(equalTo(11 )));
+        assertThat(test.getArtists().size(), is(equalTo(11)));
         validateArtists(test.getArtists());
     }
 
     private void validateArtists(List<FestivalArtist> artists) {
         assertThat(artists, notNullValue());
-        assertThat(artists.size(), is(equalTo(11 )));
+        assertThat(artists.size(), is(equalTo(11)));
         assertThat(artists.get(0).getArtist().getName(), is("Base Ball Bear"));
         assertThat(artists.get(1).getArtist().getName(), is("サンボマスター"));
         assertThat(artists.get(2).getArtist().getName(), is("the telephones"));
@@ -76,6 +83,7 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
         assertThat(artists.get(9).getArtist().getName(), is("ASIAN KUNG-FU GENERATION"));
         assertThat(artists.get(10).getArtist().getName(), is("ASIAN KUNG-FU GENERATION"));
     }
+
     @Test
     public void テストクラスのBean化() {
         assertThat(simpleBean, notNullValue());
