@@ -1,4 +1,4 @@
-package com.kasakaid.kasakaidboot.service;
+package com.kasakaid.kasakaidboot.application;
 
 import com.kasakaid.kasakaidboot.domain.FestivalArtist;
 import com.kasakaid.kasakaidboot.domain.MusicFestival;
