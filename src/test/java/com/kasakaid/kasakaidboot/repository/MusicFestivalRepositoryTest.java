@@ -6,7 +6,7 @@ import com.kasakaid.kasakaidboot.domain.MusicFestival;
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
 import com.kasakaid.kasakaidboot.domain.artist.Sex;
 import com.kasakaid.kasakaidboot.domain.artist.Solo;
-import com.kasakaid.kasakaidboot.service.MusicFestivalService;
+import com.kasakaid.kasakaidboot.application.MusicFestivalService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
