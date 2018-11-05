@@ -33,17 +33,14 @@ public class TestConfig {
 
     @Bean
     public TransactionAwareDataSourceProxy dataSource() {
-        net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy proxyDs = null;
         if ("jdbc:log4jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE".equals(environment.getProperty("spring.datasource.url"))) {
             EmbeddedDatabase ds = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
-            proxyDs = new net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy(ds);
-            return new TransactionAwareDataSourceProxy(proxyDs);
+            return new TransactionAwareDataSourceProxy(
+                    new net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy(ds)
+            );
         }
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        proxyDs = new net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy(dataSource);
-        // Autowired した environemnent からキーが発見できない。。
-        // log4jdbc が何故かロードできない。
-//        dataSource.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+        net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy proxyDs = new net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy(dataSource);
         dataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
         dataSource.setUrl(environment.getProperty("spring.datasource.url"));
         dataSource.setUsername(environment.getProperty("spring.datasource.username"));

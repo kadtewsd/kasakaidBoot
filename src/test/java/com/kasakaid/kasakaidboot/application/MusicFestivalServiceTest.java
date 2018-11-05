@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 // No suitable driver found for jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
@@ -31,13 +31,8 @@ public class MusicFestivalServiceTest extends AbstractBaseTest {
     @Before
     public void setUp() {
         super.setup();
-        // Autowired の ApplicationContext では Bean は見つからない
     }
 
-    // テストクラスのBeanを Autowired しようとすると「NoSuchBeanDefinitionException」になる。
-    // TestConfig の ComponentScan が効いている気配がない。
-    // 下記のページでインターフェースでやると良いとあるが、インターフェースを使ってやってもだめ。
-    //https://stackoverflow.com/questions/3413639/how-to-get-spring-to-autowire-integration-test-class-using-multiple-contexts
     @Autowired
     private ISimpleBean simpleBean;
     @Autowired
