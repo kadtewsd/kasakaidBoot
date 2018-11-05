@@ -4,7 +4,6 @@ import com.kasakaid.kasakaidboot.ApplicationTests;
 import com.kasakaid.kasakaidboot.helper.resource.MyResource;
 import com.kasakaid.kasakaidboot.helper.verify.ISimpleBean;
 import com.kasakaid.kasakaidboot.helper.verify.SimpleBean;
-import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
