@@ -69,7 +69,7 @@ public class MusicFestivalRepositoryTest {
         assertThat(musicFestival.getName(), org.hamcrest.core.Is.is("ROCK IN JAPAN Fes 2017"));
         assertThat(musicFestival.getId(), org.hamcrest.core.Is.is(3L));
         FestivalArtist artist = musicFestival.getArtists().get(0);
-//        assertThat(artist..getName(), org.hamcrest.core.Is.is("Lisa"));
-//        assertThat(artist.getId(), org.hamcrest.core.Is.is(5L));
+        assertThat(artist.getArtist().getName(), org.hamcrest.core.Is.is("Lisa"));
+        assertThat(artist.getArtist().getId(), org.hamcrest.core.Is.is(5L));
     }
 }
