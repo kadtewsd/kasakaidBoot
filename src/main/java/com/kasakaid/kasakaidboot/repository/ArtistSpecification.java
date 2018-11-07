@@ -16,7 +16,7 @@ public class ArtistSpecification {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
                 predicates.add(
-                        cb.and(cb.between(root.get(Group_.members), lower, upper))
+                        cb.and(cb.between(root.get(Artist_.members), lower, upper))
                 );
 
             });
@@ -31,13 +31,13 @@ public class ArtistSpecification {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
                 predicates.add(
-                        cb.and(cb.greaterThanOrEqualTo(root.get(Group_.members), lower),
-                                cb.lessThanOrEqualTo(root.get(Group_.members), upper))
+                        cb.and(cb.greaterThanOrEqualTo(root.get(Artist_.members), lower),
+                                cb.lessThanOrEqualTo(root.get(Artist_.members), upper))
                 );
 
             });
             Predicate group = cb.or(predicates.toArray(new Predicate[predicates.size()]));
-            Predicate solo = cb.isNull(root.get(Group_.members));
+            Predicate solo = cb.isNull(root.get(Artist_.members));
             return cb.or(group, solo);
         };
     }

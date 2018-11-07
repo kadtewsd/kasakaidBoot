@@ -1,7 +1,7 @@
 package com.kasakaid.kasakaidboot.repository;
 
 import com.kasakaid.kasakaidboot.domain.artist.MusicGroup;
-import com.kasakaid.kasakaidboot.domain.artist.Group_;
+import com.kasakaid.kasakaidboot.domain.artist.Artist_;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
@@ -28,8 +28,8 @@ public class MemberSpecification {
             final Collection<Predicate> predicates = new ArrayList<>();
             lowerUpper.forEach((lower, upper) -> {
                 predicates.add(
-                        cb.and(cb.greaterThanOrEqualTo(root.get(Group_.members), lower),
-                                cb.lessThanOrEqualTo(root.get(Group_.members), upper))
+                        cb.and(cb.greaterThanOrEqualTo(root.get(Artist_.members), lower),
+                                cb.lessThanOrEqualTo(root.get(Artist_.members), upper))
                 );
 
             });

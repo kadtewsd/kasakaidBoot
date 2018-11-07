@@ -1,6 +1,7 @@
 package com.kasakaid.kasakaidboot.repository;
 
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
+import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.domain.artist.MusicGroup;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,8 @@ public class MusicGroupRepositoryMemberTest extends AbstractBaseTest {
         super.setup();
         members = new HashMap() {
             {
-                put(1, 2);
-                put(6, 7);
+                put(2, 2);
+                put(8, 10);
             }
         };
     }
@@ -75,29 +76,26 @@ public class MusicGroupRepositoryMemberTest extends AbstractBaseTest {
     public static void 東京スカパラダイスオーケストラ(Artist artist) {
         assertThat(artist.getId(), is(11L));
         assertThat(artist.getName(), is("東京スカパラダイスオーケストラ"));
-        assertThat(artist.getId(), is(8));
-        assertThat(artist.getName(), is("SKA"));
+        assertThat(artist.getGenre(), is(Genre.SKA));
         assertThat(artist.getClass(), typeCompatibleWith(MusicGroup.class));
         MusicGroup musicGroup = (MusicGroup) artist;
-        assertThat(musicGroup.getMembers(), is(7));
+        assertThat(musicGroup.getMembers(), is(10));
     }
 
     public static void dragonAsh(Artist dragonAsh) {
         assertThat(dragonAsh.getId(), is(15L));
         assertThat(dragonAsh.getName(), is("Dragon Ash"));
-        assertThat(dragonAsh.getId(), is(1));
-        assertThat(dragonAsh.getName(), is("ROCK"));
+        assertThat(dragonAsh.getGenre(), is(Genre.ROCK));
 
         assertThat(dragonAsh.getClass(), typeCompatibleWith(MusicGroup.class));
         MusicGroup musicGroup = (MusicGroup) dragonAsh;
-        assertThat(musicGroup.getMembers(), is(7));
+        assertThat(musicGroup.getMembers(), is(8));
     }
 
     public static void bz(Artist bz) {
         assertThat(bz.getId(), is(22L));
         assertThat(bz.getName(), is("B'z"));
-        assertThat(bz.getId(), is(7));
-        assertThat(bz.getName(), is("Heavy Metal"));
+        assertThat(bz.getGenre(), is(Genre.HARD_ROCK));
 
         assertThat(bz.getClass(), typeCompatibleWith(MusicGroup.class));
         MusicGroup musicGroup = (MusicGroup) bz;
