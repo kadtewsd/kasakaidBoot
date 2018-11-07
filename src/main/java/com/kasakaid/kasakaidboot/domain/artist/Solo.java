@@ -15,9 +15,13 @@ public class Solo extends Artist {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    public Solo(long id, String name, Sex sex) {
-        super(id, name, 1);
+    public Solo(long id, String name, Sex sex, Genre genre) {
+        super(id, name, 1, genre);
         this.sex = sex;
     }
 
+    @Override
+    public Artist transform() {
+        return new Solo(id, name, sex, genre);
+    }
 }

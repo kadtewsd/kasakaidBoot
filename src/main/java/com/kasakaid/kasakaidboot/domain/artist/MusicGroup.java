@@ -23,8 +23,8 @@ import javax.persistence.InheritanceType;
 @Entity
 public class MusicGroup extends MappedArtist implements ArtistTransformer {
 
-    MusicGroup(long id, String name, int members) {
-        super(id, name, members);
+    MusicGroup(long id, String name, int members, Genre genre) {
+        super(id, name, members, genre);
     }
 
     @Column(nullable = false)

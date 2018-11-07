@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @DiscriminatorValue("unit")
 public class Unit extends MusicGroup {
-    public Unit(long id, String name, int members) {
-        super(id, name, members);
+    public Unit(long id, String name, int members, Genre genre) {
+        super(id, name, members, genre);
     }
 }

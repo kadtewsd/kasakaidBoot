@@ -2,6 +2,7 @@ package com.kasakaid.kasakaidboot.application;
 
 import com.kasakaid.kasakaidboot.domain.FestivalArtist;
 import com.kasakaid.kasakaidboot.domain.MusicFestival;
+import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -11,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -27,8 +30,8 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
         super.setup();
         members = new HashMap() {
             {
-                put(1, 2);
-                put(6, 7);
+                put(1, 1);
+                put(6, 10);
             }
         };
     }
@@ -39,11 +42,15 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
     @Test
     public void アーティストの人数でテスト() throws Exception {
         this.myResource.insertData("music_festival");
-        List<MusicFestival> test = service.findByMembers(members);
-        assertThat(test.size(), is(equalTo(2)));
-        MusicFestival metorock = test.get(0); // メトロック
+        List<MusicFestival> test = service.findByMembers(members)
+                .stream()
+                .sorted(Comparator.comparing(MusicFestival::getEventDate)
+                .thenComparing(MusicFestival::getId))
+                .collect(Collectors.toList());
+        assertThat(test.size(), is(equalTo(3)));
+        MusicFestival metorock = test.get(1); // メトロック
         メトロックの検証(metorock);
-        MusicFestival rockin = test.get(1);
+        MusicFestival rockin = test.get(2);
         ロッキンジャパンの検証(rockin);
     }
 
@@ -56,10 +63,9 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
 
         assertThat(festivalArtist.getPlayOrder(), is(6));
         assertThat(festivalArtist.getStart(), is(LocalDateTime.of(2016, Month.MAY, 21, 16, 30, 00)));
-        assertThat(festivalArtist.getArtist().getId(), is(14));
+        assertThat(festivalArtist.getArtist().getId(), is(11L));
         assertThat(festivalArtist.getArtist().getName(), is("東京スカパラダイスオーケストラ"));
-        assertThat(festivalArtist.getArtist().getId(), is(1));
-        assertThat(festivalArtist.getArtist().getName(), is("ROCK"));
+        assertThat(festivalArtist.getArtist().getGenre(), is(Genre.SKA));
     }
 
     private void ロッキンジャパンの検証(MusicFestival rockin) {
@@ -71,26 +77,23 @@ public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
         FestivalArtist dragonAsh = rockin.getArtists().get(0);
         assertThat(dragonAsh.getPlayOrder(), is(2));
         assertThat(dragonAsh.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 11, 50, 00)));
-        assertThat(dragonAsh.getArtist().getId(), is(15));
+        assertThat(dragonAsh.getArtist().getId(), is(15L));
         assertThat(dragonAsh.getArtist().getName(), is("Dragon Ash"));
-        assertThat(dragonAsh.getArtist().getId(), is(1));
-        assertThat(dragonAsh.getArtist().getName(), is("ROCK"));
+        assertThat(dragonAsh.getArtist().getGenre(), is(Genre.ROCK));
 
         FestivalArtist mone = rockin.getArtists().get(1);
         assertThat(mone.getPlayOrder(), is(5));
         assertThat(mone.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 14, 00, 00)));
-        assertThat(mone.getArtist().getId(), is(18));
+        assertThat(mone.getArtist().getId(), is(18L));
         assertThat(mone.getArtist().getName(), is("上白石萌音"));
-        assertThat(mone.getArtist().getId(), is(3));
-        assertThat(mone.getArtist().getName(), is("POP"));
+        assertThat(mone.getArtist().getGenre(), is(Genre.POP));
 
         FestivalArtist lisa = rockin.getArtists().get(2);
         assertThat(lisa.getPlayOrder(), is(6));
         assertThat(lisa.getStart(), is(LocalDateTime.of(2017, Month.AUGUST, 5, 14, 00, 00)));
-        assertThat(lisa.getArtist().getId(), is(19));
+        assertThat(lisa.getArtist().getId(), is(19L));
         assertThat(lisa.getArtist().getName(), is("LiSA"));
-        assertThat(lisa.getArtist().getId(), is(1));
-        assertThat(lisa.getArtist().getName(), is("ROCK"));
+        assertThat(lisa.getArtist().getGenre(), is(Genre.ROCK));
 
     }
 }

@@ -16,7 +16,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @NoArgsConstructor
 abstract class MappedArtist extends Artist  {
-    MappedArtist(long id, String name, int members) {
-        super(id, name, members);
+    MappedArtist(long id, String name, int members, Genre genre) {
+        super(id, name, members, genre);
     }
 }

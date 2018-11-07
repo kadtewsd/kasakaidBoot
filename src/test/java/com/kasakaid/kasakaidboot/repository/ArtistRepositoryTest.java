@@ -1,17 +1,22 @@
 package com.kasakaid.kasakaidboot.repository;
 
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
+import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.domain.artist.Sex;
 import com.kasakaid.kasakaidboot.domain.artist.Solo;
+import com.kasakaid.kasakaidboot.domain.artist.Unit;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistMembers;
 import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistWithId;
@@ -32,7 +37,7 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
         members = new HashMap() {
             {
                 put(1, 2);
-                put(6, 7);
+                put(6, 10);
             }
         };
     }
@@ -40,13 +45,18 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     @Autowired
     private ArtistRepository artistRepository;
 
+    private List<Artist> find() {
+        List<Artist> result = artistRepository.findAll(
+                where(artistWithId(this.members)));
+        return result
+                .stream()
+                .sorted(Comparator.comparing(Artist::getId))
+                .collect(Collectors.toList());
+    }
     @Test
     public void アーティストの人数でテスト() throws Exception {
         this.myResource.insertData("music_festival");
-//        List<Artist> test = groupRepository.findAll(
-//                members(this.members));
-        List<Artist> test = artistRepository.findAll(
-                where(artistMembers(this.members)));
+        List<Artist> test = find();
         logArtist(test);
         assertThat(test.size(), is(equalTo(5)));
         Artist sukapara = test.get(0); // 東京スカパラダイス
@@ -63,10 +73,7 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     @Test
     public void IDでアーティストの人数でテスト() throws Exception {
         this.myResource.insertData("music_festival");
-//        List<Artist> test = groupRepository.findAll(
-//                members(this.members));
-        List<Artist> test = artistRepository.findAll(
-                where(artistWithId(this.members)));
+        List<Artist> test = find();
         logArtist(test);
         assertThat(test.size(), is(equalTo(5)));
         Artist sukapara = test.get(0); // 東京スカらパラダイス
@@ -84,10 +91,9 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     public static void 上白石(Artist mone) {
         assertThat(mone.getId(), is(18L));
         assertThat(mone.getName(), is("上白石萌音"));
-        assertThat(mone.getId(), is(3));
-        assertThat(mone.getName(), is("POP"));
-        assertThat(mone.getClass(), typeCompatibleWith(Solo.class));
-        Solo solo = (Solo) mone;
+        assertThat(mone.getGenre(), is(Genre.POP));
+        assertThat(mone.transform().getClass(), typeCompatibleWith(Solo.class));
+        Solo solo = (Solo) mone.transform();
         assertThat(solo.getSex(), is(Sex.Female));
 
     }
@@ -95,10 +101,9 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
     public static void lisa(Artist lisa) {
         assertThat(lisa.getId(), is(19L));
         assertThat(lisa.getName(), is("LiSA"));
-        assertThat(lisa.getId(), is(1));
-        assertThat(lisa.getName(), is("ROCK"));
-        assertThat(lisa.getClass(), typeCompatibleWith(Solo.class));
-        Solo solo = (Solo) lisa;
+        assertThat(lisa.getGenre(), is(Genre.ROCK));
+        assertThat(lisa.transform().getClass(), typeCompatibleWith(Solo.class));
+        Solo solo = (Solo) lisa.transform();
         assertThat(solo.getSex(), is(Sex.Female));
     }
 }

@@ -2,6 +2,7 @@ package com.kasakaid.kasakaidboot.application;
 
 import com.kasakaid.kasakaidboot.domain.FestivalArtist;
 import com.kasakaid.kasakaidboot.domain.MusicFestival;
+import com.kasakaid.kasakaidboot.domain.artist.Artist;
 import com.kasakaid.kasakaidboot.domain.service.ArtistTransformer;
 import com.kasakaid.kasakaidboot.repository.MusicFestivalRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,23 @@ public class MusicFestivalService {
     }
 
     public List<MusicFestival> findByMembers(Map<Integer, Integer> members) {
-        return this.transformArtist(
-                musicFestivalRepository.findAll()
-        );
+        List<MusicFestival> results = musicFestivalRepository.findAll();
+        for (MusicFestival musicFestival : results) {
+            for (int i = musicFestival.getArtists().size() - 1; i >= 0; i--) {
+                Artist artist = musicFestival.getArtists().get(i).getArtist();
+                boolean ok = false;
+                for (Map.Entry<Integer, Integer> upperLower : members.entrySet()) {
+                    if (upperLower.getKey() <= artist.getMembers() && artist.getMembers() <= upperLower.getValue()) {
+                        ok = true;
+                        break;
+                    }
+                }
+                if (!ok) {
+                    musicFestival.getArtists().remove(i);
+                }
+            }
+        }
+        return results;
     }
 
     private List<MusicFestival> transformArtist(List<MusicFestival> festivals) {
