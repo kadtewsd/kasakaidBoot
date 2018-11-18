@@ -18,6 +18,10 @@ description = "This is my first SpringBoot"
 version = "0.0.1-SNAPSHOT"
 sourceCompatibility = 1.8
 
+test {
+    jvmArgs = ['-Dspring.profiles.active=test']
+}
+
 repositories {
 	mavenCentral()
 }
