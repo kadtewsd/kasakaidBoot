@@ -4,7 +4,6 @@ import com.kasakaid.kasakaidboot.utility.LocalDateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -73,9 +72,12 @@ public class MusicFestival {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "musicFestival")
     @Getter
-    @Setter
     @OrderBy("playOrder ASC")
     private List<FestivalArtist> artists;
+
+    private void setArtists(List<FestivalArtist> artists) {
+        this.artists = artists;
+    }
 
     public boolean storeArtistsList(List<FestivalArtist> artists) {
         setArtists(artists);
