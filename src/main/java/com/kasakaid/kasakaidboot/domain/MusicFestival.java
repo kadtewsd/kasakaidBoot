@@ -77,6 +77,12 @@ public class MusicFestival {
     @OrderBy("playOrder ASC")
     private List<FestivalArtist> artists;
 
+    public boolean storeArtistsList(List<FestivalArtist> artists) {
+        setArtists(artists);
+        return true;
+    }
+
+
     public MusicFestival() {
         System.out.print(1);
     }

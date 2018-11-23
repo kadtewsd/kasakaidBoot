@@ -31,23 +31,18 @@ public class MusicFestivalService {
     }
 
     public List<MusicFestival> findByMembers(Map<Integer, Integer> members) {
-        List<MusicFestival> results = musicFestivalRepository.findAll();
-        for (MusicFestival musicFestival : results) {
-            for (int i = musicFestival.getArtists().size() - 1; i >= 0; i--) {
-                Artist artist = musicFestival.getArtists().get(i).getArtist();
-                boolean ok = false;
-                for (Map.Entry<Integer, Integer> upperLower : members.entrySet()) {
-                    if (upperLower.getKey() <= artist.getMembers() && artist.getMembers() <= upperLower.getValue()) {
-                        ok = true;
-                        break;
-                    }
-                }
-                if (!ok) {
-                    musicFestival.getArtists().remove(i);
-                }
-            }
-        }
-        return results;
+        return musicFestivalRepository.findAll()
+                .stream()
+                .filter(mf -> mf.storeArtistsList(mf.getArtists().stream()
+                            .filter(a -> members.entrySet().stream()
+                                    .anyMatch(m1 -> m1.getKey() <= a.getArtist().getMembers()
+                                            && m1.getValue() >= a.getArtist().getMembers()
+                                    )
+                            )
+                            .collect(Collectors.toList())
+                    )
+                )
+                .collect(Collectors.toList());
     }
 
     private List<MusicFestival> transformArtist(List<MusicFestival> festivals) {
