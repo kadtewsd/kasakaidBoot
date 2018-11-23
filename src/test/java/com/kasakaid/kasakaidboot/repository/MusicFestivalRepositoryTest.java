@@ -44,7 +44,7 @@ public class MusicFestivalRepositoryTest {
         FestivalArtist festivalArtist = FestivalArtist.of().festivalId(3L).artistId(5L)
                 .playOrder(5).start(
                  LocalDateTime.of(2017, Month.AUGUST, 5, 14, 0, 0)).artist(solo).build();
-        festival.setArtists(new ArrayList()
+        festival.storeArtistsList(new ArrayList()
                 {
                         {
                                 add(festivalArtist);

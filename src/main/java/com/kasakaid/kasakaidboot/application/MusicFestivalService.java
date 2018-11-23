@@ -51,7 +51,7 @@ public class MusicFestivalService {
     }
 
     private MusicFestival transformArtist(MusicFestival festival) {
-        festival.setArtists(
+        festival.storeArtistsList(
                 festival.getArtists().stream().map((FestivalArtist festivalArtist) -> {
                     if (festivalArtist.getArtist() instanceof ArtistTransformer) {
                         festivalArtist.renewArtists((ArtistTransformer) festivalArtist.getArtist());
