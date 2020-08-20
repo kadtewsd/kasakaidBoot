@@ -1,9 +1,6 @@
 package com.kasakaid.kasakaidboot.helper.config;
 
 import com.kasakaid.kasakaidboot.ApplicationTests;
-import com.kasakaid.kasakaidboot.helper.resource.MyResource;
-import com.kasakaid.kasakaidboot.helper.verify.ISimpleBean;
-import com.kasakaid.kasakaidboot.helper.verify.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,12 +23,6 @@ public class TestConfig {
     Environment environment;
 
     @Bean
-    public ISimpleBean simpleBean() {
-        SimpleBean orderService = new SimpleBean();
-        return orderService;
-    }
-
-    @Bean
     public TransactionAwareDataSourceProxy dataSource() {
         if ("jdbc:log4jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE".equals(environment.getProperty("spring.datasource.url"))) {
             EmbeddedDatabase ds = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
@@ -46,11 +37,6 @@ public class TestConfig {
         dataSource.setUsername(environment.getProperty("spring.datasource.username"));
         dataSource.setPassword(environment.getProperty("spring.datasource.password"));
         return new TransactionAwareDataSourceProxy(proxyDs);
-    }
-
-    @Bean
-    public MyResource myResource() {
-        return new MyResource();
     }
 }
 

@@ -8,8 +8,8 @@ import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.domain.artist.Sex;
 import com.kasakaid.kasakaidboot.domain.artist.Solo;
 import com.kasakaid.kasakaidboot.application.MusicFestivalService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class MusicFestivalRepositoryTest {
     @MockBean
     MusicFestivalRepository musicFestivalRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         MusicFestival festival = MusicFestival.of().id(3L).name("ROCK IN JAPAN Fes 2017").build().eventDate(

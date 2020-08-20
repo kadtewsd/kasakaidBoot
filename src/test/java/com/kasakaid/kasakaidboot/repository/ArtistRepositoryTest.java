@@ -1,37 +1,36 @@
 package com.kasakaid.kasakaidboot.repository;
 
+import com.kasakaid.kasakaidboot.domain.MusicFestival;
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
 import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.domain.artist.Sex;
 import com.kasakaid.kasakaidboot.domain.artist.Solo;
-import com.kasakaid.kasakaidboot.domain.artist.Unit;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistMembers;
-import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.artistWithId;
+import static com.kasakaid.kasakaidboot.repository.ArtistSpecification.*;
 import static com.kasakaid.kasakaidboot.repository.MusicGroupRepositoryMemberTest.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.typeCompatibleWith;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.springframework.data.jpa.domain.Specifications.where;
+import static org.springframework.data.jpa.domain.Specification.*;
 
 @Slf4j
 public class ArtistRepositoryTest extends AbstractBaseTest {
 
     private Map<Integer, Integer> members;
-    @Before
+    @BeforeEach
     public void setUp() {
         super.setup();
         members = new HashMap() {
@@ -44,6 +43,12 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
 
     @Autowired
     private ArtistRepository artistRepository;
+
+    @Autowired
+    private EntityManager em;
+
+    @Autowired
+    private MusicFestivalRepository musicFestivalRepository;
 
     private List<Artist> find() {
         List<Artist> result = artistRepository.findAll(
@@ -70,6 +75,7 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
         Artist bz = test.get(4);
         bz(bz);
     }
+
     @Test
     public void IDでアーティストの人数でテスト() throws Exception {
         this.myResource.insertData("music_festival");
@@ -86,6 +92,14 @@ public class ArtistRepositoryTest extends AbstractBaseTest {
         lisa(lisa);
         Artist bz = test.get(4);
         bz(bz);
+    }
+
+    @SneakyThrows
+    @Test
+    public void MusicFestivalTest() {
+        this.myResource.insertData("music_festival");
+        List<MusicFestival> musicFestivals = musicFestivalRepository.findAll();
+        System.out.println(musicFestivals);
     }
 
     public static void 上白石(Artist mone) {

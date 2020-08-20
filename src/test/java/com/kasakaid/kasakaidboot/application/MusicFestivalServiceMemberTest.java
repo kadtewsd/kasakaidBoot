@@ -5,8 +5,8 @@ import com.kasakaid.kasakaidboot.domain.MusicFestival;
 import com.kasakaid.kasakaidboot.domain.artist.Genre;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 public class MusicFestivalServiceMemberTest extends AbstractBaseTest {
 
     private Map<Integer, Integer> members;
-    @Before
+    @BeforeEach
     public void setUp() {
         super.setup();
         members = new HashMap() {

@@ -6,8 +6,8 @@ import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import com.kasakaid.kasakaidboot.helper.verify.ISimpleBean;
 import com.kasakaid.kasakaidboot.helper.verify.SimpleBean;
 import lombok.SneakyThrows;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Comparator;
@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.*;
 //})
 public class MusicFestivalServiceTest extends AbstractBaseTest {
 
-    @Before
+    @BeforeEach
     public void setUp() {
         super.setup();
     }

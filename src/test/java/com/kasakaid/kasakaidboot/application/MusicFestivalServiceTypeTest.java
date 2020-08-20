@@ -5,8 +5,8 @@ import com.kasakaid.kasakaidboot.domain.MusicFestival;
 import com.kasakaid.kasakaidboot.domain.artist.Band;
 import com.kasakaid.kasakaidboot.helper.AbstractBaseTest;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 @Slf4j
 public class MusicFestivalServiceTypeTest extends AbstractBaseTest {
 
-    @Before
+    @BeforeEach
     public void setUp() {
         super.setup();
     }

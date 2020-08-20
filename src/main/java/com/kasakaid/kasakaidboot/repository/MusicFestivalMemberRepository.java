@@ -1,7 +1,7 @@
 package com.kasakaid.kasakaidboot.repository;
 
 import com.kasakaid.kasakaidboot.domain.artist.Artist;
-import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import java.util.List;
 //public interface MusicFestivalMemberRepository extends JpaRepository<MusicFestival, Long>, JpaSpecificationExecutor<MusicGroup> {
 public interface MusicFestivalMemberRepository  {
 //    List<MusicFestival> findByMembers(Specifications specifications);
-    <T extends Artist> List<T> findByMembers(Specifications<T> specifications);
+    <T extends Artist> List<T> findByMembers(Specification<T> specifications);
 }

@@ -2,8 +2,6 @@ package com.kasakaid.kasakaidboot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.datasource.init.CompositeDatabasePopulator;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
@@ -21,11 +19,11 @@ public class JdbcConfig {
         //new ClassPathResource("function.sql"));
         //functionPopulator.setSeparator(";/");
 
-        ResourceDatabasePopulator generalPopulator = new ResourceDatabasePopulator(
-                new ClassPathResource("schema.sql"),
-                new ClassPathResource("db/migration/data.sql"));
+//        ResourceDatabasePopulator generalPopulator = new ResourceDatabasePopulator(
+//                new ClassPathResource("schema.sql"),
+//                new ClassPathResource("db/migration/data.sql"));
 
-        initializer.setDatabasePopulator(new CompositeDatabasePopulator(functionPopulator, generalPopulator));
+//        initializer.setDatabasePopulator(new CompositeDatabasePopulator(functionPopulator, generalPopulator));
 
         return initializer;
     }

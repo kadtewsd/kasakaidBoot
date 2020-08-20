@@ -26,6 +26,11 @@ public abstract class Artist implements Serializable {
     @Id
     long id;
     String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Enumerated(EnumType.STRING)
     Genre genre;
     int members;

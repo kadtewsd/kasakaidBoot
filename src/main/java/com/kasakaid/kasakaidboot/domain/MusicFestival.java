@@ -17,7 +17,11 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /***
@@ -36,9 +40,9 @@ import java.util.List;
         attributeNodes = @NamedAttributeNode(value = "artists", subgraph = "artist"),
         subclassSubgraphs = {
                 @NamedSubgraph(name = "artist",
-                attributeNodes = {
-                        @NamedAttributeNode("name")
-                })
+                        attributeNodes = {
+                                @NamedAttributeNode("name")
+                        })
         }
 )
 @Builder(builderMethodName = "of")
@@ -53,20 +57,24 @@ public class MusicFestival {
     @Getter
     private String place;
 
-    @Access(AccessType.PROPERTY)
-    private LocalDate eventDate;
-
+    //    @Access(AccessType.PROPERTY)
+//    private LocalDate eventDate;
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
+    private Date eventDate;
+
     public LocalDate getEventDate() {
-        return this.eventDate;
+        return LocalDate.now();
     }
-    @Convert(converter = LocalDateConverter.class)
-    private void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+
+//    @Convert(converter = LocalDateConverter.class)
+    private void setEventDate(Date eventDate) {
+//        this.eventDate = eventDate.atTime()
+        System.out.println("とおた");
     }
 
     public MusicFestival eventDate(LocalDate _eventDate) {
-        this.setEventDate(_eventDate);
+//        this.setEventDate(_eventDate);
         return this;
     }
 
