@@ -1,0 +1,18 @@
+spring.profiles.include: test-include
+spring.datasource:
+  username: sa
+  password:
+  url: jdbc:log4jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
+  driver-class-name: net.sf.log4jdbc.DriverSpy
+
+# paas
+logging.level:
+  jdbc: OFF
+  root: INFO
+server.port: 9000
+org.hibernate.SQL: enabled
+spring.jpa:
+  generate-ddl: true
+  hibernate.ddl-auto: validate
+spring.h2.console.enabled: true
+duplicate.key: "I'm a test"

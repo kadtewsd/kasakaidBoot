@@ -1,0 +1,6 @@
+spring.datasource.sql-script-encoding: UTF-8
+hibernate.hbm2ddl.auto: validate
+spring.jpa:
+  show-sql: TRUE
+  hibernate.ddl-auto: validate
+common.key: this_is_common
